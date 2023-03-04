@@ -1,4 +1,4 @@
-package com.example.ifitness
+package com.example.ifitness.application
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,6 +11,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.example.ifitness.R
+import com.example.ifitness.domain.UserCharacteristics
 import com.google.firebase.database.*
 
 class LoginActivity : ComponentActivity() {
@@ -49,8 +51,8 @@ class LoginActivity : ComponentActivity() {
                         if (name.text.toString() == userName && password.text.toString() == userPassword) {
 
                             //ProfileCharacteristics.setKey(id)
-                            ProfileCharacteristics.setUsername(userName)
-                            ProfileCharacteristics.setEmail(userEmail)
+                            UserCharacteristics.setUsername(userName)
+                            UserCharacteristics.setEmail(userEmail)
                             startActivity(intent)
                             toast.cancel()
 

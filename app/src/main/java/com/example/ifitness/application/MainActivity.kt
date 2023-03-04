@@ -1,11 +1,11 @@
-package com.example.ifitness
+package com.example.ifitness.application
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.example.ifitness.R
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

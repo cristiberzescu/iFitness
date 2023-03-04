@@ -1,6 +1,6 @@
-package com.example.ifitness
+package com.example.ifitness.domain
 
-object ProfileCharacteristics {
+object UserCharacteristics {
 
     private var username: String? = null
     private var email: String? = null

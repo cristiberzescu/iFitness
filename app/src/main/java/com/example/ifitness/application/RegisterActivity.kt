@@ -1,5 +1,6 @@
-package com.example.ifitness
+package com.example.ifitness.application
 
+//import com.example.ifitness.database
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,14 +8,17 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import com.google.firebase.database.*
+import com.example.ifitness.R
+import com.example.ifitness.domain.User
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-private lateinit var database: DatabaseReference
-
 class RegisterActivity : ComponentActivity() {
-
+    private lateinit var database: DatabaseReference
     private var databaseReferenceUsers: DatabaseReference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +35,8 @@ class RegisterActivity : ComponentActivity() {
         var buttonRegister = findViewById(R.id.btn_register) as Button
         var buttonBack = findViewById(R.id.btn_back) as Button
 
-        var toast: Toast = Toast.makeText(applicationContext, "User already exist", Toast.LENGTH_SHORT)
+        var toast: Toast =
+            Toast.makeText(applicationContext, "User already exist", Toast.LENGTH_SHORT)
         var count: Int? = 0
 
         buttonRegister.setOnClickListener {
@@ -78,15 +83,16 @@ class RegisterActivity : ComponentActivity() {
                             val firebaseUserEmail = ds.child("userEmail").value.toString()
 
                             if (user_name == firebaseUserName || email == firebaseUserEmail) {
-                                count=1
+                                count = 1
                             }
                         }
                     }
+
                     override fun onCancelled(error: DatabaseError) {
                         Log.e("ooooo", "onCancelled: ${error.toException()}")
                     }
                 })
-                if(count==0) {
+                if (count == 0) {
                     //val userId = database.push().key!!
 
                     val user = User(email, user_name, password)
@@ -111,8 +117,7 @@ class RegisterActivity : ComponentActivity() {
                         }.addOnFailureListener { err ->
                             Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
                         }
-                }
-                else{
+                } else {
                     toast.show()
                 }
 

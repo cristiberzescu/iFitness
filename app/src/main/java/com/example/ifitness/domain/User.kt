@@ -1,4 +1,4 @@
-package com.example.ifitness
+package com.example.ifitness.domain
 
 data class User(
     //var userId: String? = null,
