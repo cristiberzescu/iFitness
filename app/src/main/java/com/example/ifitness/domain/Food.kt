@@ -1,11 +1,12 @@
 package com.example.ifitness.domain
 
 data class Food(
-    var serviceTitle: String? = null,
-    var serviceDescription: String? = null,
-    var servicePhone: String? = null,
-    var servicePrice: String? = null,
+    var name: String = "",
+    var calories: Int = 0,
+    var protein: Int = 0,
+    var carbs: Int = 0,
+    var fat: Int = 0,
+    var grams: Int = 0,
+    var date: String = ""
 
-    var serviceLocation: String? = null,
-    var serviceOwner: String?= null
 )
