@@ -39,6 +39,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_add_food"
+                android:layout_width="150dp"
+                android:layout_height="23dp"
+                android:background="#E4E2D5"
+                android:text="Add food"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                tools:ignore="MissingConstraints,TextContrastCheck" />
 
             <Button
                 android:id="@+id/btn_new_food"
@@ -51,7 +67,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold|italic"
                 tools:ignore="MissingConstraints,TextContrastCheck" />
-
+            </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/foodList"
                 android:layout_width="351dp"

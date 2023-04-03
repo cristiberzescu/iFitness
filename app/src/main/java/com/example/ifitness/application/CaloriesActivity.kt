@@ -28,6 +28,7 @@ class CaloriesActivity : ComponentActivity() {
         var buttonTracking = findViewById(R.id.tracking_button) as ImageButton
         var buttonMap = findViewById(R.id.map_button) as ImageButton
         var buttonNewFood = findViewById(R.id.btn_new_food) as Button
+        var buttonAddFood = findViewById(R.id.btn_add_food) as Button
 
         buttonMenu.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -53,6 +54,10 @@ class CaloriesActivity : ComponentActivity() {
             val intent = Intent(this, CreateFoodActivity::class.java)
             startActivity(intent)
         }
+        buttonAddFood.setOnClickListener {
+            val intent = Intent(this, SelectFoodActivity::class.java)
+            startActivity(intent)
+        }
 
         serviceRecycerView = findViewById(R.id.foodList)
         serviceRecycerView.layoutManager = LinearLayoutManager(this)
@@ -60,11 +65,11 @@ class CaloriesActivity : ComponentActivity() {
 
         serviceArrayList = arrayListOf<Food>()
 
-        getServiceData()
+        getFoodData()
 
     }
 
-    private fun getServiceData() {
+    private fun getFoodData() {
         database = FirebaseDatabase.getInstance().getReference("foods")
 
         database.addValueEventListener(object : ValueEventListener {

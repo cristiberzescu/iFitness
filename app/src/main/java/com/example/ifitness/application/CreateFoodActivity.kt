@@ -75,6 +75,7 @@ class CreateFoodActivity : ComponentActivity() {
                     foodProtein.toInt(),
                     foodCarbs.toInt(),
                     foodFat.toInt(),
+                    100
                 )
 
                 database.child("foods").child(foodName).setValue(food).addOnCompleteListener {
@@ -88,7 +89,7 @@ class CreateFoodActivity : ComponentActivity() {
                             food_carbs.text.clear()
                             food_fat.text.clear()
 
-                            val intent = Intent(this, MainActivity::class.java)
+                            val intent = Intent(this, CaloriesActivity::class.java)
                             startActivity(intent)
                         } else Toast.makeText(this, "Fields empty", Toast.LENGTH_LONG).show()
 
@@ -107,7 +108,7 @@ class CreateFoodActivity : ComponentActivity() {
         }
 
         btn_back.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, CaloriesActivity::class.java)
             startActivity(intent)
         }
     }

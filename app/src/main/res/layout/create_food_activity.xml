@@ -27,7 +27,6 @@
         android:id="@+id/food_calories"
         android:layout_width="269dp"
         android:layout_height="78dp"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\n "
         android:ems="10"
         android:hint="Calories/100g"
         android:inputType="textPersonName"

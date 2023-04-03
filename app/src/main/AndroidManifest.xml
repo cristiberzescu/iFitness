@@ -77,6 +77,22 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".application.SelectFoodActivity"
+            android:screenOrientation="portrait"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".application.AddFoodActivity"
+            android:screenOrientation="portrait"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".application.RegisterActivity"
             android:screenOrientation="portrait"
             android:exported="false">
