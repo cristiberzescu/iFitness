@@ -5,7 +5,7 @@ data class Food(
     var calories: Int = 0,
     var protein: Int = 0,
     var carbs: Int = 0,
-    var fat: Int = 0,
+    var fats: Int = 0,
     var grams: Int = 0,
     var date: String = ""
 

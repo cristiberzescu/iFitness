@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.SearchView
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +19,7 @@ class SelectFoodActivity : ComponentActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var foodRecycerView: RecyclerView
     private lateinit var foodArrayList: ArrayList<Food>
-    var contor:Boolean = false
+    var contor: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.select_food_activity)
@@ -58,12 +57,14 @@ class SelectFoodActivity : ComponentActivity() {
         foodArrayList = arrayListOf<Food>()
 
     }
+
     fun getStatus() {
         if (contor == true) {
             val intent1 = Intent(this, AddFoodActivity::class.java)
             startActivity(intent1)
         }
     }
+
     fun onAddButtonClick() {
         val intent = Intent(this, AddFoodActivity::class.java)
         //intent.putExtra("foods", food)
@@ -73,6 +74,36 @@ class SelectFoodActivity : ComponentActivity() {
     private fun getFoodData(text: String) {
         database = FirebaseDatabase.getInstance().getReference("foods")
         foodArrayList.clear()
+
+//        val listener = object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                if (snapshot.exists()) {
+//                    for (foodSnapshot in snapshot.children) {
+//                        val foodNameTest = foodSnapshot.child("name").value.toString()
+//                        if (foodNameTest.lowercase().contains(text.lowercase())) {
+//                            val food = foodSnapshot.getValue(Food::class.java)
+//                            foodArrayList.add(food!!)
+//                        }
+//                    }
+//                    foodRecycerView.adapter = FoodListAdapter(foodArrayList)
+//
+//                }
+//
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                // Trateaza cazurile de eroare
+//            }
+//
+//        }
+//        database.addListenerForSingleValueEvent(listener)
+//        if (FoodCharacteristics.getTitle()?.isNotEmpty() == true) {
+//            database.removeEventListener(listener)
+//            onAddButtonClick()
+//
+//        }
+
+
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -86,8 +117,11 @@ class SelectFoodActivity : ComponentActivity() {
                     foodRecycerView.adapter = FoodListAdapter(foodArrayList)
 
                 }
-                if(FoodCharacteristics.getTitle()?.isNotEmpty() == true)
+                if(FoodCharacteristics.getName()?.isNotEmpty() == true){
+
                     onAddButtonClick()
+                    return
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

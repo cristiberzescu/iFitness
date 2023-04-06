@@ -39,10 +39,14 @@ class FoodListAdapter(private var foodList: ArrayList<Food>//, private val liste
         holder.calories.text = currentFood.calories.toString() + "cal"
         holder.protein.text = currentFood.protein.toString() + "g"
         holder.carbs.text = currentFood.carbs.toString() + "g"
-        holder.fat.text = currentFood.fat.toString() + "g"
+        holder.fats.text = currentFood.fats.toString() + "g"
         holder.grams.text = currentFood.grams.toString() + "g"
         holder.btn_add.setOnClickListener {
-            FoodCharacteristics.setTitle(currentFood.name)
+            FoodCharacteristics.setName(currentFood.name)
+            FoodCharacteristics.setProtein(currentFood.protein.toString())
+            FoodCharacteristics.setCarbs(currentFood.carbs.toString())
+            FoodCharacteristics.setFats(currentFood.fats.toString())
+            FoodCharacteristics.setCalories(currentFood.calories.toString())
         }
 //        val food = foodList[position]
 //        holder.bind(food)
@@ -65,7 +69,7 @@ class FoodListAdapter(private var foodList: ArrayList<Food>//, private val liste
         val calories: TextView = itemView.findViewById(R.id.firebase_food_calories)
         val protein: TextView = itemView.findViewById(R.id.firebase_food_protein)
         val carbs: TextView = itemView.findViewById(R.id.firebase_food_carbs)
-        val fat: TextView = itemView.findViewById(R.id.firebase_food_fat)
+        val fats: TextView = itemView.findViewById(R.id.firebase_food_fats)
         val grams: TextView = itemView.findViewById(R.id.firebase_food_grams)
         val btn_add: Button = itemView.findViewById(R.id.firebase_add_food)
     }

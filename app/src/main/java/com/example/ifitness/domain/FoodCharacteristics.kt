@@ -2,25 +2,47 @@ package com.example.ifitness.domain
 
 object FoodCharacteristics {
 
-    private var serviceTitle :String? = null
-    private var serviceKey : String? = null
+    private var foodName :String? = null
+    private var protein : String? = null
+    private var carbs : String? = null
+    private var fats : String? = null
+    private var calories : String? = null
 
-
-
-    fun setKey(saveKey: String) {
-        serviceKey = saveKey
+    fun setCalories(foodCalories: String) {
+        calories = foodCalories
     }
-    fun getKey(): String?{
-        return serviceKey
-    }
-
-
-    fun setTitle(saveTitle: String) {
-        serviceTitle = saveTitle
+    fun getCalories(): String?{
+        return calories
     }
 
-    fun getTitle(): String?{
-        return serviceTitle
+    fun setProtein(foodProtein: String) {
+        protein = foodProtein
+    }
+    fun getProtein(): String?{
+        return protein
+    }
+
+    fun setCarbs(foodCarbs: String) {
+        carbs = foodCarbs
+    }
+    fun getCarbs(): String?{
+        return carbs
+    }
+
+    fun setFats(foofFats: String) {
+        fats = foofFats
+    }
+    fun getFats(): String?{
+        return fats
+    }
+
+
+    fun setName(name: String) {
+        foodName = name
+    }
+
+    fun getName(): String?{
+        return foodName
     }
 
 }

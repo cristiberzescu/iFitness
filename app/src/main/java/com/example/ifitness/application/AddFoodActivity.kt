@@ -4,16 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
-import com.example.ifitness.adaptors.FoodListAdapter
 import com.example.ifitness.domain.Food
 import com.example.ifitness.domain.FoodCharacteristics
 import com.google.firebase.database.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AddFoodActivity : ComponentActivity() {
@@ -30,20 +30,96 @@ class AddFoodActivity : ComponentActivity() {
 
 
         var food_name = findViewById(R.id.firebase_food_name) as TextView
+        var food_calories = findViewById(R.id.firebase_food_calories) as TextView
+        var food_protein = findViewById(R.id.firebase_food_protein) as TextView
+        var food_carbs = findViewById(R.id.firebase_food_carbs) as TextView
+        var food_fats = findViewById(R.id.firebase_food_fats) as TextView
+
         var food_grams = findViewById(R.id.food_grams) as EditText
 
-        food_name.text=FoodCharacteristics.getTitle()
+
+        food_name.text=FoodCharacteristics.getName()
+        food_calories.text=FoodCharacteristics.getCalories()
+        food_protein.text=FoodCharacteristics.getProtein()
+        food_carbs.text=FoodCharacteristics.getCarbs()
+        food_fats.text=FoodCharacteristics.getFats()
+
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val date = String.format("%02d/%02d/%d", day, month + 1, year)
+
+
+
+
+
+
+        foodArrayList = arrayListOf<Food>()
+
+        fun addFood(){
+            val foodName = food_name.text.toString()
+            val foodCalories = food_calories.text.toString()
+            val foodProtein = food_protein.text.toString()
+            val foodCarbs = food_carbs.text.toString()
+            val foodFat = food_fats.text.toString()
+            val foodGrams = food_grams.text.toString()
+
+            if (foodGrams.isEmpty()) {
+                food_grams.error = "Please enter grams"
+            }
+
+            if (!(foodGrams.matches("^[0-9]*$".toRegex()))){
+                Toast.makeText(
+                    this, "grams not valid", Toast.LENGTH_LONG
+                ).show()
+            } else{
+                val food = Food(
+                    foodName,
+                    foodCalories.toInt(),
+                    foodProtein.toInt(),
+                    foodCarbs.toInt(),
+                    foodFat.toInt(),
+                    foodGrams.toInt()
+                )
+
+                database.child("Users").child(foodName).setValue(food).addOnCompleteListener {
+                    if (foodName.isNotEmpty() && foodCalories.isNotEmpty() && foodProtein.isNotEmpty() && foodCarbs.isNotEmpty() && foodFat.isNotEmpty()) {
+                        Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG)
+                            .show()
+
+//                        food_name.text.clear()
+//                        food_calories.text.clear()
+//                        food_protein.text.clear()
+//                        food_carbs.text.clear()
+//                        food_fat.text.clear()
+
+                        val intent = Intent(this, CaloriesActivity::class.java)
+                        startActivity(intent)
+                    } else Toast.makeText(this, "Fields empty", Toast.LENGTH_LONG).show()
+
+
+                }.addOnFailureListener { err ->
+                    Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
+                }
+
+            }
+
+        }
 
         btn_add_food.setOnClickListener {
-            FoodCharacteristics.setTitle("")
-            // addNewFood()
+            FoodCharacteristics.setName("")
+            addFood()
         }
 
         btn_back.setOnClickListener {
-            FoodCharacteristics.setTitle("")
+            FoodCharacteristics.setName("")
             val intent = Intent(this, SelectFoodActivity::class.java)
             startActivity(intent)
         }
+    }
+}
 
 //        food_name.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 //            override fun onQueryTextSubmit(query: String?): Boolean {
@@ -59,34 +135,7 @@ class AddFoodActivity : ComponentActivity() {
 //        })
 
 
-        foodArrayList = arrayListOf<Food>()
 
-    }
-
-    private fun getFoodData(text: String) {
-        database = FirebaseDatabase.getInstance().getReference("foods")
-        foodArrayList.clear()
-        database.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (foodSnapshot in snapshot.children) {
-                        val foodNameTest = foodSnapshot.child("name").value.toString()
-                        if (foodNameTest.lowercase().contains(text.lowercase())) {
-                            val food = foodSnapshot.getValue(Food::class.java)
-                            foodArrayList.add(food!!)
-                        }
-                    }
-                    foodRecycerView.adapter = FoodListAdapter(foodArrayList)
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Trateaza cazurile de eroare
-            }
-        })
-    }
-
-}
 
 
 //           if(foodNameData.lowercase()?.contains(text.lowercase())==true)
@@ -134,3 +183,29 @@ class AddFoodActivity : ComponentActivity() {
 //
 //            }
 //        }
+
+
+
+//
+//private fun getFoodData(text: String) {
+//    database = FirebaseDatabase.getInstance().getReference("foods")
+//    foodArrayList.clear()
+//    database.addListenerForSingleValueEvent(object : ValueEventListener {
+//        override fun onDataChange(snapshot: DataSnapshot) {
+//            if (snapshot.exists()) {
+//                for (foodSnapshot in snapshot.children) {
+//                    val foodNameTest = foodSnapshot.child("name").value.toString()
+//                    if (foodNameTest.lowercase().contains(text.lowercase())) {
+//                        val food = foodSnapshot.getValue(Food::class.java)
+//                        foodArrayList.add(food!!)
+//                    }
+//                }
+//                foodRecycerView.adapter = FoodListAdapter(foodArrayList)
+//            }
+//        }
+//
+//        override fun onCancelled(error: DatabaseError) {
+//            // Trateaza cazurile de eroare
+//        }
+//    })
+//}
