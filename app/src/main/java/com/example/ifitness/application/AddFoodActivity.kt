@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
 import com.example.ifitness.domain.Food
 import com.example.ifitness.domain.FoodCharacteristics
+import com.example.ifitness.domain.UserCharacteristics
 import com.google.firebase.database.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -18,16 +19,15 @@ import kotlin.collections.ArrayList
 
 class AddFoodActivity : ComponentActivity() {
     private lateinit var database: DatabaseReference
-    private lateinit var foodRecycerView: RecyclerView
-    private lateinit var foodArrayList: ArrayList<Food>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_food_activity)
 
+        database = FirebaseDatabase.getInstance().getReference("Users")
+
         var btn_back = findViewById<Button>(R.id.btn_back)
         var btn_add_food = findViewById<Button>(R.id.btn_add_food)
-
 
         var food_name = findViewById(R.id.firebase_food_name) as TextView
         var food_calories = findViewById(R.id.firebase_food_calories) as TextView
@@ -38,27 +38,20 @@ class AddFoodActivity : ComponentActivity() {
         var food_grams = findViewById(R.id.food_grams) as EditText
 
 
-        food_name.text=FoodCharacteristics.getName()
-        food_calories.text=FoodCharacteristics.getCalories()
-        food_protein.text=FoodCharacteristics.getProtein()
-        food_carbs.text=FoodCharacteristics.getCarbs()
-        food_fats.text=FoodCharacteristics.getFats()
+        food_name.text = FoodCharacteristics.getName()
+        food_calories.text = FoodCharacteristics.getCalories()
+        food_protein.text = FoodCharacteristics.getProtein()
+        food_carbs.text = FoodCharacteristics.getCarbs()
+        food_fats.text = FoodCharacteristics.getFats()
 
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val date = String.format("%02d/%02d/%d", day, month + 1, year)
+        val todayDate = String.format("%02d-%02d-%d", day, month + 1, year)
 
-
-
-
-
-
-        foodArrayList = arrayListOf<Food>()
-
-        fun addFood(){
+        fun addFood() {
             val foodName = food_name.text.toString()
             val foodCalories = food_calories.text.toString()
             val foodProtein = food_protein.text.toString()
@@ -66,15 +59,10 @@ class AddFoodActivity : ComponentActivity() {
             val foodFat = food_fats.text.toString()
             val foodGrams = food_grams.text.toString()
 
-            if (foodGrams.isEmpty()) {
-                food_grams.error = "Please enter grams"
-            }
+            if (!(foodGrams.matches("^[0-9]*$".toRegex())) || foodGrams.isEmpty()) {
+                food_grams.error = "Please enter valid grams"
+            } else {
 
-            if (!(foodGrams.matches("^[0-9]*$".toRegex()))){
-                Toast.makeText(
-                    this, "grams not valid", Toast.LENGTH_LONG
-                ).show()
-            } else{
                 val food = Food(
                     foodName,
                     foodCalories.toInt(),
@@ -84,32 +72,33 @@ class AddFoodActivity : ComponentActivity() {
                     foodGrams.toInt()
                 )
 
-                database.child("Users").child(foodName).setValue(food).addOnCompleteListener {
-                    if (foodName.isNotEmpty() && foodCalories.isNotEmpty() && foodProtein.isNotEmpty() && foodCarbs.isNotEmpty() && foodFat.isNotEmpty()) {
-                        Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG)
-                            .show()
-
-//                        food_name.text.clear()
-//                        food_calories.text.clear()
-//                        food_protein.text.clear()
-//                        food_carbs.text.clear()
-//                        food_fat.text.clear()
-
-                        val intent = Intent(this, CaloriesActivity::class.java)
-                        startActivity(intent)
-                    } else Toast.makeText(this, "Fields empty", Toast.LENGTH_LONG).show()
 
 
-                }.addOnFailureListener { err ->
+                database.child(UserCharacteristics.getUsername().toString()).child("calories").child(todayDate).child(foodName).setValue(food)
+                    .addOnCompleteListener {
+                        if (foodGrams.isNotEmpty()) {
+                            Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG)
+                                .show()
+
+                            food_grams.text.clear()
+
+                            FoodCharacteristics.setName("")
+
+
+                            val intent = Intent(this, CaloriesActivity::class.java)
+                            startActivity(intent)
+                        } else Toast.makeText(this, "Fields empty", Toast.LENGTH_LONG).show()
+
+
+                    }.addOnFailureListener { err ->
                     Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
                 }
 
-            }
 
+            }
         }
 
         btn_add_food.setOnClickListener {
-            FoodCharacteristics.setName("")
             addFood()
         }
 
@@ -133,9 +122,6 @@ class AddFoodActivity : ComponentActivity() {
 //            }
 //
 //        })
-
-
-
 
 
 //           if(foodNameData.lowercase()?.contains(text.lowercase())==true)
@@ -183,7 +169,6 @@ class AddFoodActivity : ComponentActivity() {
 //
 //            }
 //        }
-
 
 
 //

@@ -7,6 +7,6 @@ data class Food(
     var carbs: Int = 0,
     var fats: Int = 0,
     var grams: Int = 0,
-    var date: String = ""
+    //var date: String = ""
 
 )

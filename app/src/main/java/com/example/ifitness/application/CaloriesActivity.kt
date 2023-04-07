@@ -11,16 +11,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
 import com.example.ifitness.adaptors.FoodListAdapter
 import com.example.ifitness.domain.Food
+import com.example.ifitness.domain.UserCharacteristics
 import com.google.firebase.database.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CaloriesActivity : ComponentActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var serviceRecycerView: RecyclerView
     private lateinit var serviceArrayList: ArrayList<Food>
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.calories_activity)
+
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val todayDate = String.format("%02d-%02d-%d", day, month + 1, year)
+
 
         var buttonMenu = findViewById(R.id.main_button) as ImageButton
         var buttonCalories = findViewById(R.id.calories_button) as ImageButton
@@ -65,12 +77,13 @@ class CaloriesActivity : ComponentActivity() {
 
         serviceArrayList = arrayListOf<Food>()
 
-        getFoodData()
+        getFoodData(todayDate)
 
     }
 
-    private fun getFoodData() {
-        database = FirebaseDatabase.getInstance().getReference("foods")
+    private fun getFoodData(day: String) {
+        database = FirebaseDatabase.getInstance().getReference("Users")
+            .child(UserCharacteristics.getUsername().toString()).child("calories").child(day)
 
         database.addValueEventListener(object : ValueEventListener {
 

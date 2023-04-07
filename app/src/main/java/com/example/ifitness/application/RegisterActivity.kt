@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.ifitness.R
+import com.example.ifitness.domain.Date
 import com.example.ifitness.domain.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -94,6 +95,7 @@ class RegisterActivity : ComponentActivity() {
                 })
                 if (count == 0) {
                     //val userId = database.push().key!!
+
 
                     val user = User(email, user_name, password)
 
