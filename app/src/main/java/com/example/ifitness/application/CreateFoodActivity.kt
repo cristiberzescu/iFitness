@@ -62,41 +62,41 @@ class CreateFoodActivity : ComponentActivity() {
                 food_fat.error = "Please enter fat"
             }
 
-            if (!(foodCalories.matches("^[0-9]*$".toRegex()) && foodProtein.matches("^[0-9]*$".toRegex()) && foodCarbs.matches(
-                    "^[0-9]*$".toRegex()
-                ) && foodFat.matches("^[0-9]*$".toRegex()))
+            if (!(foodCalories.matches("^[0-9]*$".toRegex()) && foodProtein.matches("^[0-9]+([,.][0-9]{1})?\$".toRegex()) && foodCarbs.matches(
+                    "^[0-9]+([,.][0-9]{1})?\$".toRegex()
+                ) && foodFat.matches("^[0-9]+([,.][0-9]{1})?\$".toRegex()))
             ) Toast.makeText(
-                this, "fields not valid", Toast.LENGTH_LONG
+                this, "fields not valid, you can use max 1 decimal", Toast.LENGTH_LONG
             ).show()
             else {
                 val food = Food(
                     foodName,
                     foodCalories.toInt(),
-                    foodProtein.toInt(),
-                    foodCarbs.toInt(),
-                    foodFat.toInt(),
+                    foodProtein.replace(',', '.').toFloat(),
+                    foodCarbs.replace(',', '.').toFloat(),
+                    foodFat.replace(',', '.').toFloat(),
                     100
                 )
 
                 database.child("foods").child(foodName).setValue(food).addOnCompleteListener {
-                        if (foodName.isNotEmpty() && foodCalories.isNotEmpty() && foodProtein.isNotEmpty() && foodCarbs.isNotEmpty() && foodFat.isNotEmpty()) {
-                            Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG)
-                                .show()
+                    if (foodName.isNotEmpty() && foodCalories.isNotEmpty() && foodProtein.isNotEmpty() && foodCarbs.isNotEmpty() && foodFat.isNotEmpty()) {
+                        Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG)
+                            .show()
 
-                            food_name.text.clear()
-                            food_calories.text.clear()
-                            food_protein.text.clear()
-                            food_carbs.text.clear()
-                            food_fat.text.clear()
+                        food_name.text.clear()
+                        food_calories.text.clear()
+                        food_protein.text.clear()
+                        food_carbs.text.clear()
+                        food_fat.text.clear()
 
-                            val intent = Intent(this, CaloriesActivity::class.java)
-                            startActivity(intent)
-                        } else Toast.makeText(this, "Fields empty", Toast.LENGTH_LONG).show()
+                        val intent = Intent(this, CaloriesActivity::class.java)
+                        startActivity(intent)
+                    } else Toast.makeText(this, "Fields empty", Toast.LENGTH_LONG).show()
 
 
-                    }.addOnFailureListener { err ->
-                        Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
-                    }
+                }.addOnFailureListener { err ->
+                    Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
+                }
 
 
             }

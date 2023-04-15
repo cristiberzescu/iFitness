@@ -7,14 +7,12 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
 import com.example.ifitness.domain.Food
 import com.example.ifitness.domain.FoodCharacteristics
 import com.example.ifitness.domain.UserCharacteristics
 import com.google.firebase.database.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class AddFoodActivity : ComponentActivity() {
@@ -24,7 +22,7 @@ class AddFoodActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_food_activity)
 
-        database = FirebaseDatabase.getInstance().getReference("Users")
+        database = FirebaseDatabase.getInstance().getReference("users")
 
         var btn_back = findViewById<Button>(R.id.btn_back)
         var btn_add_food = findViewById<Button>(R.id.btn_add_food)
@@ -44,12 +42,13 @@ class AddFoodActivity : ComponentActivity() {
         food_carbs.text = FoodCharacteristics.getCarbs()
         food_fats.text = FoodCharacteristics.getFats()
 
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-        val todayDate = String.format("%02d-%02d-%d", day, month + 1, year)
+//        val calendar = Calendar.getInstance()
+//        val year = calendar.get(Calendar.YEAR)
+//        val month = calendar.get(Calendar.MONTH)
+//        val day = calendar.get(Calendar.DAY_OF_MONTH)
+//
+//        val todayDate = String.format("%02d-%02d-%d", day, month + 1, year)
+        val todayDate = FoodCharacteristics.getdate()
 
         fun addFood() {
             val foodName = food_name.text.toString()
@@ -59,42 +58,37 @@ class AddFoodActivity : ComponentActivity() {
             val foodFat = food_fats.text.toString()
             val foodGrams = food_grams.text.toString()
 
-            if (!(foodGrams.matches("^[0-9]*$".toRegex())) || foodGrams.isEmpty()) {
+            if ((!(foodGrams.matches("^[0-9]*$".toRegex()))) || foodGrams.isEmpty()) {
                 food_grams.error = "Please enter valid grams"
             } else {
-
+                val grams: Float = foodGrams.toFloat() / 100
+                val currentTime = System.currentTimeMillis()
                 val food = Food(
                     foodName,
-                    foodCalories.toInt(),
-                    foodProtein.toInt(),
-                    foodCarbs.toInt(),
-                    foodFat.toInt(),
-                    foodGrams.toInt()
+                    foodGrams.toInt() * foodCalories.toInt() / 100,
+                    grams * foodProtein.toFloat(),
+                    grams * foodCarbs.toFloat(),
+                    grams * foodFat.toFloat(),
+                    foodGrams.toInt(),
+                    currentTime
                 )
+                val id = UUID.randomUUID().toString()
 
 
-
-                database.child(UserCharacteristics.getUsername().toString()).child("calories").child(todayDate).child(foodName).setValue(food)
+                database.child(UserCharacteristics.getUsername().toString()).child("calories")
+                    .child(todayDate.toString()).child(id).setValue(food)
                     .addOnCompleteListener {
-                        if (foodGrams.isNotEmpty()) {
-                            Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG)
-                                .show()
+                        Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG)
+                            .show()
 
-                            food_grams.text.clear()
-
-                            FoodCharacteristics.setName("")
-
-
-                            val intent = Intent(this, CaloriesActivity::class.java)
-                            startActivity(intent)
-                        } else Toast.makeText(this, "Fields empty", Toast.LENGTH_LONG).show()
-
+                        food_grams.text.clear()
+                        FoodCharacteristics.setName("")
+                        val intent = Intent(this, CaloriesActivity::class.java)
+                        startActivity(intent)
 
                     }.addOnFailureListener { err ->
-                    Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
-                }
-
-
+                        Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
+                    }
             }
         }
 
@@ -109,6 +103,10 @@ class AddFoodActivity : ComponentActivity() {
         }
     }
 }
+
+
+//^[0-9]+([,.][0-9]{1,2})?$
+
 
 //        food_name.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 //            override fun onQueryTextSubmit(query: String?): Boolean {

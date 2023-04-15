@@ -27,7 +27,7 @@ class RegisterActivity : ComponentActivity() {
         setContentView(R.layout.register_activity)
 
         database = Firebase.database.reference
-        //databaseReferenceUsers = FirebaseDatabase.getInstance()?.getReference("Users")
+        //databaseReferenceUsers = FirebaseDatabase.getInstance()?.getReference("users")
 
         var userName = findViewById(R.id.et_user_name) as EditText
         var userEmail = findViewById(R.id.et_user_email) as EditText
@@ -76,7 +76,7 @@ class RegisterActivity : ComponentActivity() {
             else if (user_name.isNotEmpty() && password.isNotEmpty() && email.isNotEmpty()) {
 
 
-                database.child("Users").addListenerForSingleValueEvent(object : ValueEventListener {
+                database.child("users").addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (ds in snapshot.children) {
 
@@ -99,7 +99,7 @@ class RegisterActivity : ComponentActivity() {
 
                     val user = User(email, user_name, password)
 
-                    database.child("Users").child(user_name).setValue(user)
+                    database.child("users").child(user_name).setValue(user)
                         .addOnCompleteListener {
 
                             Toast.makeText(

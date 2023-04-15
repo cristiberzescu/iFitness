@@ -28,7 +28,7 @@ class LoginActivity : ComponentActivity() {
         setContentView(R.layout.login_activity)
 
         firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase?.getReference("Users")
+        databaseReference = firebaseDatabase?.getReference("users")
 
         var count: Int? = 0
         var toast: Toast = Toast.makeText(applicationContext, "User name or Password incorrect!", Toast.LENGTH_SHORT)

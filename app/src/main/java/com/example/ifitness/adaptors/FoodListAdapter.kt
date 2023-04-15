@@ -1,5 +1,6 @@
 package com.example.ifitness.adaptors
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,14 +33,15 @@ class FoodListAdapter(private var foodList: ArrayList<Food>//, private val liste
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentFood = foodList[position]
 
         holder.name.text = currentFood.name
         holder.calories.text = currentFood.calories.toString() + "cal"
-        holder.protein.text = currentFood.protein.toString() + "g"
-        holder.carbs.text = currentFood.carbs.toString() + "g"
-        holder.fats.text = currentFood.fats.toString() + "g"
+        holder.protein.text = String.format("%.1f", currentFood.protein) + "g"
+        holder.carbs.text = String.format("%.1f", currentFood.carbs) + "g"
+        holder.fats.text = String.format("%.1f", currentFood.fats) + "g"
         holder.grams.text = currentFood.grams.toString() + "g"
         holder.btn_add.setOnClickListener {
             FoodCharacteristics.setName(currentFood.name)
