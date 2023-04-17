@@ -81,14 +81,14 @@ class CaloriesActivity : ComponentActivity() {
             val intent = Intent(this, CreateFoodActivity::class.java)
             startActivity(intent)
         }
-//        buttonAddFood.setOnClickListener {
-//            val intent = Intent(this, SelectFoodActivity::class.java)
-//            startActivity(intent)
-//        }
         buttonAddFood.setOnClickListener {
-            val datePicker = findViewById<DatePicker>(R.id.datePicker)
-            datePicker.visibility = View.VISIBLE
+            val intent = Intent(this, SelectFoodActivity::class.java)
+            startActivity(intent)
         }
+//        buttonAddFood.setOnClickListener {
+//            val datePicker = findViewById<DatePicker>(R.id.datePicker)
+//            datePicker.visibility = View.VISIBLE
+//        }
 
 
 
@@ -140,16 +140,16 @@ class CaloriesActivity : ComponentActivity() {
             getFoodData(selectedDay)
         }
 
-        val datePicker = findViewById<DatePicker>(R.id.datePicker)
-        datePicker.init(
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        ) { _, year, monthOfYear, dayOfMonth ->
-            val selectedDate = String.format("%02d-%02d-%d", dayOfMonth, monthOfYear + 1, year)
-            FoodCharacteristics.setdate(selectedDate)
-            //addFoodData(selectedDate)
-        }
+//        val datePicker = findViewById<DatePicker>(R.id.datePicker)
+//        datePicker.init(
+//            calendar.get(Calendar.YEAR),
+//            calendar.get(Calendar.MONTH),
+//            calendar.get(Calendar.DAY_OF_MONTH)
+//        ) { _, year, monthOfYear, dayOfMonth ->
+//            val selectedDate = String.format("%02d-%02d-%d", dayOfMonth, monthOfYear + 1, year)
+//            FoodCharacteristics.setdate(selectedDate)
+//            //addFoodData(selectedDate)
+//        }
 
         getFoodData(todayDate)
 
