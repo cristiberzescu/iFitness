@@ -91,13 +91,28 @@ class CaloriesActivity : ComponentActivity() {
 //        }
 
 
-
         serviceRecycerView = findViewById(R.id.foodList)
         serviceRecycerView.layoutManager = LinearLayoutManager(this)
         serviceRecycerView.setHasFixedSize(true)
 
         serviceArrayList = arrayListOf<Food>()
 
+        fun addTotalsToFirebase(
+            day: String,
+            totalCalories: Int,
+            totalProtein: Float,
+            totalCarbs: Float,
+            totalFats: Float
+        ) {
+            val userRef = FirebaseDatabase.getInstance().getReference("users")
+                .child(UserCharacteristics.getUsername().toString())
+            val totalsRef = userRef.child("totals").child(day)
+
+            totalsRef.child("totalCalories").setValue(totalCalories)
+            totalsRef.child("totalProtein").setValue(totalProtein)
+            totalsRef.child("totalCarbs").setValue(totalCarbs)
+            totalsRef.child("totalFats").setValue(totalFats)
+        }
 
         fun getFoodData(day: String) {
             database = FirebaseDatabase.getInstance().getReference("users")
@@ -123,6 +138,9 @@ class CaloriesActivity : ComponentActivity() {
                         totalCarbsTextView.text = "Total Carbs: %.1f".format(totalCarbs)
                         totalFatsTextView.text = "Total Fats: %.1f".format(totalFats)
 
+                        addTotalsToFirebase(day, totalCalories, totalProtein, totalCarbs, totalFats)
+
+
                     } else {
                         // Dacă lista este goală, faceți TextView-ul vizibil.
                         emptyListMessage.visibility = View.VISIBLE
@@ -134,6 +152,7 @@ class CaloriesActivity : ComponentActivity() {
                 }
             })
         }
+
 
         fun getBySelectedDate(selectedDay: String) {
             FoodCharacteristics.setdate(selectedDay)
