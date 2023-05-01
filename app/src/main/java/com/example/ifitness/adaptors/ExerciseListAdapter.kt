@@ -23,6 +23,10 @@ class ExerciseListAdapter(private val exerciseList: ArrayList<VideoExercise>) :
         holder.nameExercise.text = exercise.name
         holder.videoExercise.setVideoPath(exercise.url)
         holder.videoExercise.start()
+        holder.videoExercise.setOnPreparedListener { mediaPlayer ->
+            mediaPlayer.isLooping = true
+        }
+
 
     }
 
