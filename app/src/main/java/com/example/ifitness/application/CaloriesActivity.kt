@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.ComponentActivity
@@ -66,7 +65,7 @@ class CaloriesActivity : ComponentActivity() {
             startActivity(intent)
         }
         buttonWorkouts.setOnClickListener {
-            val intent = Intent(this, WorkoutsActivity::class.java)
+            val intent = Intent(this, SelectMuscleGroupActivity::class.java)
             startActivity(intent)
         }
         buttonTracking.setOnClickListener {

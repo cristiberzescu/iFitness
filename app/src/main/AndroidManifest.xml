@@ -45,7 +45,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.WorkoutsActivity"
+            android:name=".application.SelectMuscleGroupActivity"
             android:screenOrientation="portrait"
             android:exported="false">
             <meta-data
@@ -62,6 +62,14 @@
         </activity>
         <activity
             android:name=".application.MapActivity"
+            android:screenOrientation="portrait"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".application.WorkoutActivity"
             android:screenOrientation="portrait"
             android:exported="false">
             <meta-data

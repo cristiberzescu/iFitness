@@ -26,7 +26,7 @@ class MapActivity : ComponentActivity() {
             startActivity(intent)
         }
         buttonWorkouts.setOnClickListener {
-            val intent = Intent(this, WorkoutsActivity::class.java)
+            val intent = Intent(this, SelectMuscleGroupActivity::class.java)
             startActivity(intent)
         }
         buttonTracking.setOnClickListener {

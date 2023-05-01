@@ -1,6 +1,6 @@
 package com.example.ifitness.domain
 
-object WorkoutCharacteristics {
+object WorkoutsCharacteristics {
 
     private var serviceTitle :String? = null
     private var serviceKey : String? = null

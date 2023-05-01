@@ -16,7 +16,7 @@
         android:padding="25dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_top_layout"
             android:layout_width="407dp"
             android:layout_height="572dp"
@@ -30,19 +30,63 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/select_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="35dp"
-                android:text="Workouts"
+                android:text="Select group"
                 android:textAlignment="center"
                 android:textColor="#000"
-                android:textSize="48sp"
-                android:textStyle="bold|italic" />
+                android:textSize="28sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/chest_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Piept"
+                app:layout_constraintTop_toBottomOf="@+id/select_group"/>
+
+            <Button
+                android:id="@+id/back_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Spate"
+                app:layout_constraintTop_toBottomOf="@+id/chest_button"/>
+
+            <Button
+                android:id="@+id/shoulders_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Umeri"
+                app:layout_constraintTop_toBottomOf="@+id/back_button"/>
+
+            <Button
+                android:id="@+id/legs_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Picioare"
+                app:layout_constraintTop_toBottomOf="@+id/shoulders_button"/>
+
+            <Button
+                android:id="@+id/arms_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Brate"
+                app:layout_constraintTop_toBottomOf="@+id/legs_button"/>
+
+            <Button
+                android:id="@+id/abs_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Abdomen"
+                app:layout_constraintTop_toBottomOf="@+id/arms_button"/>
 
 
-
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/barLayout"
