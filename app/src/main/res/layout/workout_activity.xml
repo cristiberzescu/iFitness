@@ -30,20 +30,29 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="35dp"
+                android:id="@+id/muscleGroup"
+                android:layout_width="300dp"
+                android:layout_height="80dp"
                 android:text="Workouts"
                 android:textAlignment="center"
+                android:gravity="center"
                 android:textColor="#000"
-                android:textSize="48sp"
+                android:textSize="28dp"
                 android:textStyle="bold|italic" />
 
-            <VideoView
-                android:id="@+id/video_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:repeatCount="-1"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/exerciseList"
+                android:layout_width="351dp"
+                android:layout_height="465dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.262"
+                tools:listitem="@layout/exercise_design">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
 
         </LinearLayout>
