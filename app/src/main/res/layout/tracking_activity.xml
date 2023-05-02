@@ -33,10 +33,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="35dp"
-                android:text="Tracking"
+                android:text="Workout name"
                 android:textAlignment="center"
                 android:textColor="#000"
-                android:textSize="48sp"
+                android:textSize="20sp"
                 android:textStyle="bold|italic" />
 
             <androidx.recyclerview.widget.RecyclerView

@@ -14,7 +14,7 @@ class ExerciseListAdapter(private val exerciseList: ArrayList<VideoExercise>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.exercise_design, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.video_exercise_design, parent, false)
         return ExerciseViewHolder(itemView)
     }
 

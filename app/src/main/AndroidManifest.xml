@@ -37,7 +37,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.GalleryActivity"
+            android:name=".application.TrackingActivity"
             android:screenOrientation="portrait"
             android:exported="false">
             <meta-data

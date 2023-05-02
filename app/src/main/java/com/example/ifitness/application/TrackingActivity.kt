@@ -6,7 +6,7 @@ import android.widget.ImageButton
 import androidx.activity.ComponentActivity
 import com.example.ifitness.R
 
-class GalleryActivity : ComponentActivity() {
+class TrackingActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tracking_activity)
@@ -30,7 +30,7 @@ class GalleryActivity : ComponentActivity() {
             startActivity(intent)
         }
         buttonTracking.setOnClickListener {
-            val intent = Intent(this, GalleryActivity::class.java)
+            val intent = Intent(this, TrackingActivity::class.java)
             startActivity(intent)
         }
         buttonMap.setOnClickListener {

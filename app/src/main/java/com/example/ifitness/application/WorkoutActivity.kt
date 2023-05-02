@@ -3,7 +3,6 @@ package com.example.ifitness.application
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.VideoView
@@ -12,8 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
 import com.example.ifitness.adaptors.ExerciseListAdapter
-import com.example.ifitness.adaptors.FoodListAdapter
-import com.example.ifitness.domain.Food
 import com.example.ifitness.domain.VideoExercise
 import com.google.firebase.database.*
 
@@ -54,7 +51,7 @@ class WorkoutActivity : ComponentActivity() {
             startActivity(intent)
         }
         buttonTracking.setOnClickListener {
-            val intent = Intent(this, GalleryActivity::class.java)
+            val intent = Intent(this, TrackingActivity::class.java)
             startActivity(intent)
         }
         buttonMap.setOnClickListener {
