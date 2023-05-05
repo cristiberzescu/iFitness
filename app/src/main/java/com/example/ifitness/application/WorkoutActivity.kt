@@ -10,7 +10,7 @@ import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
-import com.example.ifitness.adaptors.ExerciseListAdapter
+import com.example.ifitness.adaptors.VideoListAdapter
 import com.example.ifitness.domain.VideoExercise
 import com.google.firebase.database.*
 
@@ -79,7 +79,7 @@ class WorkoutActivity : ComponentActivity() {
                         val exercise = serviceSnapshot.getValue(VideoExercise::class.java)
                         serviceArrayList.add(exercise!!)
                     }
-                    serviceRecycerView.adapter = ExerciseListAdapter(serviceArrayList)
+                    serviceRecycerView.adapter = VideoListAdapter(serviceArrayList)
 
 
                 } else {

@@ -26,10 +26,18 @@
 
             <TextView
                 android:id="@+id/firebase_exercise_repetitions"
-                android:layout_width="186dp"
+                android:layout_width="96dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="repetitions x weight"
+                android:text="repetitions x"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/firebase_exercise_weight"
+                android:layout_width="66dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="weight"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
