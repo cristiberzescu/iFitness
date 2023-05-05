@@ -20,7 +20,7 @@
         tools:targetApi="lollipop_mr1" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/foodList"
+        android:id="@+id/exercise_list"
         android:layout_width="351dp"
         android:layout_height="355dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodList"
+        app:layout_constraintTop_toBottomOf="@+id/exercise_list"
         app:layout_constraintVertical_bias="0.459" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

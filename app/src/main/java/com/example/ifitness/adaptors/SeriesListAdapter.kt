@@ -1,5 +1,6 @@
 package com.example.ifitness.adaptors
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ class SeriesListAdapter(private var seriesList: ArrayList<Series>) :
     }
 
     override fun getItemCount() = seriesList.size
+    @SuppressLint("NotifyDataSetChanged")
     fun setSeriesList(newList: ArrayList<Series>) {
         seriesList = newList
         notifyDataSetChanged()

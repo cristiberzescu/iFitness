@@ -1,17 +1,17 @@
 package com.example.ifitness.adaptors
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.VideoView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
 import com.example.ifitness.domain.Exercise
 import com.example.ifitness.domain.Series
-import com.example.ifitness.domain.VideoExercise
 
-class ExerciseListAdapter(private val exerciseList: ArrayList<Exercise>) :
+class ExerciseListAdapter(private val exerciseList: ArrayList<Exercise>, var context:Context) :
     RecyclerView.Adapter<ExerciseListAdapter.ExerciseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
@@ -23,7 +23,14 @@ class ExerciseListAdapter(private val exerciseList: ArrayList<Exercise>) :
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         val exercise = exerciseList[position]
         holder.nameExercise.text = exercise.name
-        holder.setSeriesList(exercise.series as ArrayList<Series>)
+
+        holder.seriesRecyclerView.layoutManager = LinearLayoutManager(context)
+        holder.seriesRecyclerView.setHasFixedSize(true)
+
+        holder.seriesRecyclerView.adapter =
+            SeriesListAdapter(exercise.series as ArrayList<Series>)
+
+        //holder.setSeriesList(exercise.series as ArrayList<Series>)
     }
 
 
@@ -32,12 +39,17 @@ class ExerciseListAdapter(private val exerciseList: ArrayList<Exercise>) :
 
     class ExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameExercise: TextView = itemView.findViewById(R.id.exercise_name)
-        val seriesRecyclerView: RecyclerView = itemView.findViewById(R.id.foodList)
+        val seriesRecyclerView: RecyclerView = itemView.findViewById(R.id.series_list)
         val seriesAdapter = SeriesListAdapter(ArrayList<Series>())
 
+
+
         fun setSeriesList(seriesList: ArrayList<Series>) {
+
             seriesAdapter.setSeriesList(seriesList)
             seriesRecyclerView.adapter?.notifyDataSetChanged()
+
+
         }
     }
 

@@ -54,7 +54,6 @@ class CaloriesActivity : ComponentActivity() {
         var buttonMap = findViewById(R.id.map_button) as ImageButton
         var buttonNewFood = findViewById(R.id.btn_new_food) as Button
         var buttonAddFood = findViewById(R.id.btn_add_food) as Button
-        var buttonPreviousDay = findViewById(R.id.button_previous_day) as Button
 
         buttonMenu.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -90,7 +89,7 @@ class CaloriesActivity : ComponentActivity() {
 //        }
 
 
-        serviceRecycerView = findViewById(R.id.foodList)
+        serviceRecycerView = findViewById(R.id.exercise_list)
         serviceRecycerView.layoutManager = LinearLayoutManager(this)
         serviceRecycerView.setHasFixedSize(true)
 
@@ -192,13 +191,7 @@ class CaloriesActivity : ComponentActivity() {
             FoodCharacteristics.setdate(previousDay)
             getFoodData(previousDay)
         }
-        buttonPreviousDay.setOnClickListener(
-            //onPreviousDayButtonClick
-            {
-                val day = FoodCharacteristics.getdate().toString()
-                getFoodData(day)
-            }
-        )
+
 
     }
 

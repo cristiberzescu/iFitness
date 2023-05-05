@@ -7,44 +7,55 @@
     tools:context=".application.LoginActivity">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/workouts_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_workout_button"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:listitem="@layout/workout_design_tracking" />
+
+    <TextView
+        android:id="@+id/tv_empty_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="No workouts yet"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/add_workout_button"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
     <Button
-        android:id="@+id/add_exercise_button"
+        android:id="@+id/add_workout_button"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:text="Add exercise"
+        android:layout_marginBottom="20dp"
+        android:text="Add workout"
         app:layout_constraintBottom_toTopOf="@+id/barLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodList" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="211dp"
         android:layout_height="47dp"
-        android:layout_marginTop="16dp"
-        android:text="Workout name"
+        android:layout_marginTop="36dp"
+        android:text="Workouts"
         android:textAlignment="center"
         android:textColor="#000"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/foodList"
-        android:layout_width="358dp"
-        android:layout_height="537dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.376"
-        tools:listitem="@layout/exercise_design">
-
-    </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
         android:id="@+id/barLayout"

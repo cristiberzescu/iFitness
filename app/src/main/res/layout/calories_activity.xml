@@ -17,31 +17,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/today_date_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/total_calories_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="Total Calories for $todayDate: 0"
+            android:text="Total Calories 0"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black" />
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/total_calories_text_view"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="Total Calories: 0"-->
-        <!--            android:textSize="24dp" />-->
 
         <TextView
             android:id="@+id/total_protein_text_view"
@@ -65,7 +46,7 @@
             android:textSize="16dp" />
 
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_top_layout"
             android:layout_width="407dp"
             android:layout_height="500dp"
@@ -78,68 +59,58 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <Button
+                android:id="@+id/btn_add_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="4dp"
+                android:text="Add food"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints,TextContrastCheck" />
 
-<!--                <DatePicker-->
-<!--                    android:id="@+id/datePicker"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content" />-->
-
-                <Button
-                    android:id="@+id/button_previous_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:onClick="onPreviousDayButtonClick"
-                    android:text="Previous Day"
-                    tools:ignore="MissingConstraints,TextContrastCheck" />/>
-
-                <Button
-                    android:id="@+id/btn_add_food"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add food"
-                    android:textSize="16sp"
-                    tools:ignore="MissingConstraints,TextContrastCheck" />
-
-                <Button
-                    android:id="@+id/btn_new_food"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New food"
-                    android:textSize="16sp"
-                    tools:ignore="MissingConstraints,TextContrastCheck" />
-            </LinearLayout>
+            <Button
+                android:id="@+id/btn_new_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="New food"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.782"
+                app:layout_constraintStart_toEndOf="@+id/btn_add_food"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints,TextContrastCheck" />
 
             <TextView
                 android:id="@+id/tv_empty_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_width="219dp"
+                android:layout_height="53dp"
                 android:text="No food yet"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:visibility="gone" />
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/foodList"
+                android:id="@+id/exercise_list"
                 android:layout_width="351dp"
                 android:layout_height="385dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.666"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.262"
+                app:layout_constraintVertical_bias="0.86"
                 tools:listitem="@layout/food_design">
 
             </androidx.recyclerview.widget.RecyclerView>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/barLayout"

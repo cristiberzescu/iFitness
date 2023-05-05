@@ -50,7 +50,7 @@ class SelectFoodActivity : ComponentActivity() {
         })
 
 
-        foodRecycerView = findViewById(R.id.foodList)
+        foodRecycerView = findViewById(R.id.exercise_list)
         foodRecycerView.layoutManager = LinearLayoutManager(this)
         foodRecycerView.setHasFixedSize(true)
 
