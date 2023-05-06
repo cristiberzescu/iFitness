@@ -6,7 +6,7 @@ import android.os.Parcelable
 data class Workout(
     var name: String = "",
     var date: String = "",
-    var exercises: List<Exercise>? = null
+    var exercises: ArrayList<Exercise>? = null
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(

@@ -1,6 +1,7 @@
 package com.example.ifitness.application
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
@@ -41,8 +42,11 @@ class MainActivity : ComponentActivity() {
             startActivity(intent)
         }
         buttonMap.setOnClickListener {
-            val intent = Intent(this, MapActivity::class.java)
-            startActivity(intent)
+            val query = "gym Timisoara"
+            val gmmIntentUri = Uri.parse("geo:0,0?q=$query")
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+            mapIntent.setPackage("com.google.android.apps.maps")
+            startActivity(mapIntent)
         }
 
     }

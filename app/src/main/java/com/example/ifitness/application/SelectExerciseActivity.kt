@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
 import com.example.ifitness.adaptors.FoodListAdapter
-import com.example.ifitness.domain.Food
-import com.example.ifitness.domain.FoodCharacteristics
+import com.example.ifitness.domain.*
 import com.google.firebase.database.*
 
 class SelectExerciseActivity : ComponentActivity() {
     private lateinit var searchEditText: EditText
     private lateinit var searchListView: ListView
+    var workout: Workout? = null
 
     private val data = mutableListOf(
         "impins la piept",
@@ -58,11 +58,24 @@ class SelectExerciseActivity : ComponentActivity() {
 
                 // Adaugarea unui listener pentru ListView
 
+                var exerciseList = arrayListOf<Exercise>()
+                val serieses = arrayListOf<Series>()
+                val bundle2=Bundle()
+                val bundle = intent.extras
+                if (bundle != null) {
+                    workout = bundle.getParcelable("workout")
+                }
 
                 searchListView.setOnItemClickListener { _, _, position, _ ->
                     val selectedExercise = adapter.getItem(position)
                     val intent = Intent(this@SelectExerciseActivity, Antrenamente::class.java)
-                    intent.putExtra("exerciseName", selectedExercise)
+                    //intent.putExtra("exerciseName", selectedExercise)
+                    val exercise = Exercise(selectedExercise.toString(), serieses)
+                    exerciseList.add(exercise)
+                    workout = Workout("workout", "06-05-2023", exerciseList)
+
+                    bundle2.putParcelable("back", workout)
+                    intent.putExtras(bundle2)
                     startActivity(intent)
                 }
 
