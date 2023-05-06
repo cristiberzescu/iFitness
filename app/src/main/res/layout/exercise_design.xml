@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/exercise_name"
-        android:layout_width="94dp"
-        android:layout_height="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Exercise"
         android:textAlignment="center"

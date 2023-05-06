@@ -15,12 +15,11 @@ import com.example.ifitness.domain.Food
 import com.example.ifitness.domain.FoodCharacteristics
 import com.google.firebase.database.*
 
-
 class SelectExerciseActivity : ComponentActivity() {
     private lateinit var searchEditText: EditText
     private lateinit var searchListView: ListView
 
-    private val data = listOf(
+    private val data = mutableListOf(
         "impins la piept",
         "fluturari",
         "genoflexiuni",
@@ -57,18 +56,16 @@ class SelectExerciseActivity : ComponentActivity() {
                 adapter.addAll(filteredData)
                 adapter.notifyDataSetChanged()
 
-                // Adaugati acest cod dupa adapter.notifyDataSetChanged()
+                // Adaugarea unui listener pentru ListView
 
-// Adaugarea unui listener pentru ListView
+
                 searchListView.setOnItemClickListener { _, _, position, _ ->
-                    // Obținerea elementului selectat
-                    val selectedExercise = data[position]
-
-                    // Crearea obiectului de tip Intent și trimiterea datelor necesare către pagina următoare
-                    val intent = Intent(applicationContext, Antrenamente::class.java)
+                    val selectedExercise = adapter.getItem(position)
+                    val intent = Intent(this@SelectExerciseActivity, Antrenamente::class.java)
                     intent.putExtra("exerciseName", selectedExercise)
                     startActivity(intent)
                 }
+
 
             }
 
@@ -77,5 +74,5 @@ class SelectExerciseActivity : ComponentActivity() {
             }
         })
     }
-
 }
+
