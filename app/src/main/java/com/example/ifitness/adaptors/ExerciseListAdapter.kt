@@ -4,14 +4,18 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
+import com.example.ifitness.application.Antrenamente
+import com.example.ifitness.dialogs.AddSeriesDialog
 import com.example.ifitness.domain.Exercise
 import com.example.ifitness.domain.Series
 
-class ExerciseListAdapter(private val exerciseList: ArrayList<Exercise>, var context:Context) :
+class ExerciseListAdapter(private val exerciseList: ArrayList<Exercise>, var context: Context) :
     RecyclerView.Adapter<ExerciseListAdapter.ExerciseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
@@ -30,9 +34,14 @@ class ExerciseListAdapter(private val exerciseList: ArrayList<Exercise>, var con
         holder.seriesRecyclerView.adapter =
             SeriesListAdapter(exercise.series as ArrayList<Series>)
 
+        holder.addSeriesButton.setOnClickListener {
+            val dialog = AddSeriesDialog()
+            //val fragmentManager = (context as Antrenamente).fragmentManager
+           // dialog.show(fragmentManager, "Add series")
+        }
+
         //holder.setSeriesList(exercise.series as ArrayList<Series>)
     }
-
 
 
     override fun getItemCount() = exerciseList.size
@@ -41,7 +50,7 @@ class ExerciseListAdapter(private val exerciseList: ArrayList<Exercise>, var con
         val nameExercise: TextView = itemView.findViewById(R.id.exercise_name)
         val seriesRecyclerView: RecyclerView = itemView.findViewById(R.id.series_list)
         val seriesAdapter = SeriesListAdapter(ArrayList<Series>())
-
+        val addSeriesButton: Button = itemView.findViewById(R.id.add_series)
 
 
         fun setSeriesList(seriesList: ArrayList<Series>) {

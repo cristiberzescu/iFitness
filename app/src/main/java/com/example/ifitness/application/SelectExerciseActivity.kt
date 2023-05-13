@@ -1,6 +1,7 @@
 package com.example.ifitness.application
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -72,11 +73,18 @@ class SelectExerciseActivity : ComponentActivity() {
                     //intent.putExtra("exerciseName", selectedExercise)
                     val exercise = Exercise(selectedExercise.toString(), serieses)
                     exerciseList.add(exercise)
-                    workout = Workout("workout", "06-05-2023", exerciseList)
+                    workout = Workout("chest", "06-05-2023", exerciseList)
 
-                    bundle2.putParcelable("back", workout)
-                    intent.putExtras(bundle2)
-                    startActivity(intent)
+//
+//                    bundle2.putParcelable("workout", workout)
+//                    intent.putExtras(bundle2)
+//                    startActivity(intent)
+
+                    val result = selectedExercise.toString()
+                    val intent2 = Intent()
+                    intent2.putExtra("result", result)
+                    setResult(Activity.RESULT_OK, intent2)
+                    finish()
                 }
 
 
@@ -88,4 +96,6 @@ class SelectExerciseActivity : ComponentActivity() {
         })
     }
 }
+
+
 
