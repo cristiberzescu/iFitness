@@ -21,8 +21,8 @@ class SeriesListAdapter(private var seriesList: ArrayList<Series>) :
 
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         val series = seriesList[position]
-        holder.repetitions.text = series.repetitions.toString()
-        holder.weight.text = series.weight.toString()
+        holder.repetitions.text = "${series.repetitions.toString()} reps x "
+        holder.weight.text = "${series.weight.toString()} kg"
         holder.seriesName.text = "Series ${position + 1}"
     }
 

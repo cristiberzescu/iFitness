@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContract
@@ -30,6 +32,7 @@ class Antrenamente : ComponentActivity() {
     private lateinit var exerciseRecyclerView: RecyclerView
     private lateinit var database: DatabaseReference
     private lateinit var exerciseAdapter: ExerciseListAdapter
+    private var isEditModeWorkoutName = false
 
     val myActivityResultContract = object : ActivityResultContract<Unit, String?>() {
         override fun createIntent(context: Context, input: Unit?): Intent {
@@ -62,6 +65,8 @@ class Antrenamente : ComponentActivity() {
         var addExercise = findViewById(R.id.add_exercise_button) as Button
         var backButton = findViewById(R.id.back_button) as Button
         var saveButton = findViewById(R.id.save_button) as Button
+        var editWorkoutName = findViewById(R.id.edit_workout_name) as ImageButton
+        var workoutName = findViewById(R.id.workout_name) as EditText
 
         val bundle = intent.extras
         if (bundle != null) {
@@ -71,9 +76,23 @@ class Antrenamente : ComponentActivity() {
             val romaniaTimeZone: ZoneId = ZoneId.of("Europe/Bucharest")
             val today: LocalDate = LocalDate.now(romaniaTimeZone)
             val todayDate: String = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-            workout = Workout("workout", todayDate, arrayListOf())
+            workout = Workout(workoutName.toString(), todayDate, arrayListOf())
+        } else {
+            workoutName.setText(workout!!.name)
         }
 
+        editWorkoutName.setOnClickListener {
+            isEditModeWorkoutName = !isEditModeWorkoutName
+
+            if (isEditModeWorkoutName) {
+                workoutName.isEnabled = true
+                workoutName.requestFocus()
+            } else {
+                workoutName.isEnabled = false
+                workoutName.clearFocus()
+                workout!!.name = workoutName.text.toString()
+            }
+        }
 
         addExercise.setOnClickListener {
             resultLauncher.launch(null)
@@ -83,6 +102,9 @@ class Antrenamente : ComponentActivity() {
             startActivity(intent)
         }
         saveButton.setOnClickListener {
+            if (workout!!.name == "") {
+                workout!!.name = "Workout"
+            }
             val id = UUID.randomUUID().toString()
             database.child(UserCharacteristics.getUsername().toString()).child("workouts").child(id)
                 .setValue(workout).addOnCompleteListener {
