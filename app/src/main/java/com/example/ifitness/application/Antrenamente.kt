@@ -76,7 +76,7 @@ class Antrenamente : ComponentActivity() {
             val romaniaTimeZone: ZoneId = ZoneId.of("Europe/Bucharest")
             val today: LocalDate = LocalDate.now(romaniaTimeZone)
             val todayDate: String = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-            workout = Workout(workoutName.toString(), todayDate, arrayListOf())
+            workout = Workout(workoutName.text.toString(), todayDate, arrayListOf())
         } else {
             workoutName.setText(workout!!.name)
         }
@@ -102,20 +102,29 @@ class Antrenamente : ComponentActivity() {
             startActivity(intent)
         }
         saveButton.setOnClickListener {
-            if (workout!!.name == "") {
-                workout!!.name = "Workout"
-            }
-            val id = UUID.randomUUID().toString()
-            database.child(UserCharacteristics.getUsername().toString()).child("workouts").child(id)
-                .setValue(workout).addOnCompleteListener {
-                    Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
-
-                    val intent = Intent(this, TrackingActivity::class.java)
-                    startActivity(intent)
-
-                }.addOnFailureListener { err ->
-                    Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
+            if (workout!!.exercises!!.isEmpty()) {
+                Toast.makeText(
+                    this,
+                    "Add an exercise!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                if (workout!!.name == "") {
+                    workout!!.name = "Workout"
                 }
+                val id = UUID.randomUUID().toString()
+                database.child(UserCharacteristics.getUsername().toString()).child("workouts")
+                    .child(id)
+                    .setValue(workout).addOnCompleteListener {
+                        Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
+
+                        val intent = Intent(this, TrackingActivity::class.java)
+                        startActivity(intent)
+
+                    }.addOnFailureListener { err ->
+                        Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
+                    }
+            }
         }
         if (workout != null) {
             exerciseRecyclerView = findViewById(R.id.exercise_list)
