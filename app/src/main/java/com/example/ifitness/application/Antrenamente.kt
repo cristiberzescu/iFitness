@@ -3,11 +3,13 @@ package com.example.ifitness.application
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContract
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
@@ -18,6 +20,9 @@ import com.example.ifitness.domain.UserCharacteristics
 import com.example.ifitness.domain.Workout
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class Antrenamente : ComponentActivity() {
@@ -47,6 +52,7 @@ class Antrenamente : ComponentActivity() {
         exerciseAdapter.notifyDataSetChanged()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.antrenamente)
@@ -60,14 +66,14 @@ class Antrenamente : ComponentActivity() {
         val bundle = intent.extras
         if (bundle != null) {
             workout = bundle.getParcelable("workout")
-            if (workout == null) {
-                workout = Workout("test", "15-2-2022", arrayListOf())
-            }
-        } else {
-            if (workout == null) {
-                workout = Workout("test", "15-2-2022", arrayListOf())
-            }
         }
+        if (workout == null) {
+            val romaniaTimeZone: ZoneId = ZoneId.of("Europe/Bucharest")
+            val today: LocalDate = LocalDate.now(romaniaTimeZone)
+            val todayDate: String = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+            workout = Workout("workout", todayDate, arrayListOf())
+        }
+
 
         addExercise.setOnClickListener {
             resultLauncher.launch(null)

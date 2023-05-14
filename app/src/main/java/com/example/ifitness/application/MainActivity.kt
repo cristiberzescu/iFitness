@@ -2,28 +2,32 @@ package com.example.ifitness.application
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import androidx.annotation.RequiresApi
 import com.example.ifitness.R
 import com.example.ifitness.domain.UserCharacteristics
 import com.google.firebase.database.*
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MainActivity : ComponentActivity() {
     private lateinit var database: DatabaseReference
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-        val todayDate = String.format("%02d-%02d-%d", day, month + 1, year)
+        val romaniaTimeZone: ZoneId = ZoneId.of("Europe/Bucharest")
+        val today: LocalDate = LocalDate.now(romaniaTimeZone)
+        val todayDate: String = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
         database = FirebaseDatabase.getInstance().getReference("users")
             .child(UserCharacteristics.getUsername().toString()).child("totals").child(todayDate)

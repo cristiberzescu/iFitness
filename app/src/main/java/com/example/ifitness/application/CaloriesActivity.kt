@@ -3,12 +3,14 @@ package com.example.ifitness.application
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
@@ -17,6 +19,9 @@ import com.example.ifitness.domain.Food
 import com.example.ifitness.domain.FoodCharacteristics
 import com.example.ifitness.domain.UserCharacteristics
 import com.google.firebase.database.*
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class CaloriesActivity : ComponentActivity() {
@@ -24,17 +29,16 @@ class CaloriesActivity : ComponentActivity() {
     private lateinit var serviceRecycerView: RecyclerView
     private lateinit var serviceArrayList: ArrayList<Food>
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.calories_activity)
 
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val romaniaTimeZone: ZoneId = ZoneId.of("Europe/Bucharest")
+        val today: LocalDate = LocalDate.now(romaniaTimeZone)
+        val todayDate: String = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
-        val todayDate = String.format("%02d-%02d-%d", day, month + 1, year)
         FoodCharacteristics.setdate(todayDate)
 
         var totalCalories = 0
@@ -139,6 +143,7 @@ class CaloriesActivity : ComponentActivity() {
                         emptyListMessage.visibility = View.VISIBLE
                     }
                 }
+
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
