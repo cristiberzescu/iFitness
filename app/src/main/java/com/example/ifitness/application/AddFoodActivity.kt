@@ -11,7 +11,8 @@ import com.example.ifitness.R
 import com.example.ifitness.domain.Food
 import com.example.ifitness.domain.FoodCharacteristics
 import com.example.ifitness.domain.UserCharacteristics
-import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
 
@@ -42,12 +43,6 @@ class AddFoodActivity : ComponentActivity() {
         food_carbs.text = FoodCharacteristics.getCarbs()
         food_fats.text = FoodCharacteristics.getFats()
 
-//        val calendar = Calendar.getInstance()
-//        val year = calendar.get(Calendar.YEAR)
-//        val month = calendar.get(Calendar.MONTH)
-//        val day = calendar.get(Calendar.DAY_OF_MONTH)
-//
-//        val todayDate = String.format("%02d-%02d-%d", day, month + 1, year)
         val todayDate = FoodCharacteristics.getdate()
 
         fun addFood() {
@@ -91,7 +86,6 @@ class AddFoodActivity : ComponentActivity() {
                     }
             }
         }
-
         btn_add_food.setOnClickListener {
             addFood()
         }

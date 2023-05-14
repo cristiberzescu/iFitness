@@ -1,6 +1,5 @@
 package com.example.ifitness.application
 
-//import com.example.ifitness.database
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +8,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.ifitness.R
-import com.example.ifitness.domain.Date
 import com.example.ifitness.domain.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,14 +18,12 @@ import com.google.firebase.ktx.Firebase
 
 class RegisterActivity : ComponentActivity() {
     private lateinit var database: DatabaseReference
-    private var databaseReferenceUsers: DatabaseReference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register_activity)
 
         database = Firebase.database.reference
-        //databaseReferenceUsers = FirebaseDatabase.getInstance()?.getReference("users")
 
         var userName = findViewById(R.id.et_user_name) as EditText
         var userEmail = findViewById(R.id.et_user_email) as EditText
@@ -69,10 +65,16 @@ class RegisterActivity : ComponentActivity() {
 //            Password can contain special characters like ! @ # & ( ).
 //            Password must contain a length of at least 6 characters and a maximum of 20 characters.
 
-            if (!password.matches("^(?=.*[A-Z,a-z,\\d,!@#&()–[{}]:;',.?/*~\$^+=<>]).{6,20}\$".toRegex()))
-                Toast.makeText(this, "Invalid password", Toast.LENGTH_LONG).show()
-            else if (password != confirmpassword && password.isNotEmpty())
-                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_LONG).show()
+            if (!password.matches("^(?=.*[A-Z,a-z,\\d,!@#&()–[{}]:;',.?/*~\$^+=<>]).{6,20}\$".toRegex())) Toast.makeText(
+                this,
+                "Invalid password",
+                Toast.LENGTH_LONG
+            ).show()
+            else if (password != confirmpassword && password.isNotEmpty()) Toast.makeText(
+                this,
+                "Passwords do not match",
+                Toast.LENGTH_LONG
+            ).show()
             else if (user_name.isNotEmpty() && password.isNotEmpty() && email.isNotEmpty()) {
 
 
@@ -94,18 +96,10 @@ class RegisterActivity : ComponentActivity() {
                     }
                 })
                 if (count == 0) {
-                    //val userId = database.push().key!!
-
-
                     val user = User(email, user_name, password)
-
-                    database.child("users").child(user_name).setValue(user)
-                        .addOnCompleteListener {
-
+                    database.child("users").child(user_name).setValue(user).addOnCompleteListener {
                             Toast.makeText(
-                                this,
-                                "Data inserted successfully",
-                                Toast.LENGTH_LONG
+                                this, "Data inserted successfully", Toast.LENGTH_LONG
                             ).show()
 
                             userName.text.clear()
@@ -122,9 +116,7 @@ class RegisterActivity : ComponentActivity() {
                 } else {
                     toast.show()
                 }
-
             } else Toast.makeText(this, "Please enter all fields", Toast.LENGTH_LONG).show()
-
         }
 
         buttonBack.setOnClickListener {

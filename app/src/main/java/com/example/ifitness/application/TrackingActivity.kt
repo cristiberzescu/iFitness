@@ -7,14 +7,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
-import com.example.ifitness.adaptors.FoodListAdapter
 import com.example.ifitness.adaptors.WorkoutListAdapter
-import com.example.ifitness.domain.Food
 import com.example.ifitness.domain.UserCharacteristics
 import com.example.ifitness.domain.Workout
 import com.google.firebase.database.*
@@ -83,72 +80,16 @@ class TrackingActivity : ComponentActivity() {
                         }
                         workoutsRecycerView.adapter =
                             WorkoutListAdapter(workoutsArrayList, applicationContext)
-
-
                     } else {
-                        // Dacă lista este goală, faceți TextView-ul vizibil.
                         emptyListMessage.visibility = View.VISIBLE
                     }
-
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
             })
-
         }
         getWorkoutData()
     }
 }
-
-/*
-// Adaugarea unei noi fotografii
-val storageRef = FirebaseStorage.getInstance().reference.child("gallery").child(UUID.randomUUID().toString())
-val uploadTask = storageRef.putFile(photoUri)
-uploadTask.continueWithTask { task ->
-if (!task.isSuccessful) {
-task.exception?.let {
-throw it
-}
-}
-storageRef.downloadUrl
-}.addOnCompleteListener { task ->
-if (task.isSuccessful) {
-val downloadUri = task.result.toString()
-val galleryPhoto = GalleryPhoto(downloadUri, date, measurements)
-val db = FirebaseFirestore.getInstance()
-db.collection("galleryPhotos").add(galleryPhoto)
-} else {
-// Handle error
-}
-}
-
-// Afisarea fotografiilor din galerie utilizand un RecyclerView si ImageView
-val galleryPhotoRef = db.collection("galleryPhotos")
-galleryPhotoRef.addSnapshotListener { snapshot, e ->
-if (e != null) {
-// Handle error
-return@addSnapshotListener
-}
-
-galleryPhotoList.clear()
-for (doc in snapshot!!.documents) {
-    val galleryPhoto = doc.toObject(GalleryPhoto::class.java)
-    galleryPhotoList.add(galleryPhoto)
-}
-galleryPhotoAdapter.notifyDataSetChanged()
-}
-
-val recyclerView = findViewById<RecyclerView>(R.id.galleryRecyclerView)
-recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-recyclerView.adapter = galleryPhotoAdapter
-
-galleryPhotoAdapter.setOnItemClickListener(object : GalleryPhotoAdapter.OnItemClickListener {
-override fun onItemClick(galleryPhoto: GalleryPhoto) {
-val imageView = findViewById<ImageView>(R.id.photoImageView)
-Picasso.get().load(galleryPhoto.imageUrl).into(imageView)
-}
-})
-
- */

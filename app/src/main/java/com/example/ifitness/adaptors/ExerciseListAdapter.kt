@@ -36,12 +36,8 @@ class ExerciseListAdapter(private val exerciseList: ArrayList<Exercise>, var con
 
         holder.addSeriesButton.setOnClickListener {
             val dialog = AddSeriesDialog(context, this, position)
-            //val fragmentManager = (context as Antrenamente).fragmentManager
             dialog.show()
         }
-
-
-        //holder.setSeriesList(exercise.series as ArrayList<Series>)
     }
 
     fun addSeries(repetitions: Int, weight: Int, position: Int) {
@@ -59,14 +55,6 @@ class ExerciseListAdapter(private val exerciseList: ArrayList<Exercise>, var con
         val seriesAdapter = SeriesListAdapter(ArrayList<Series>())
         val addSeriesButton: Button = itemView.findViewById(R.id.add_series)
 
-
-        fun setSeriesList(seriesList: ArrayList<Series>) {
-
-            seriesAdapter.setSeriesList(seriesList)
-            seriesRecyclerView.adapter?.notifyDataSetChanged()
-
-
-        }
     }
 
 

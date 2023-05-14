@@ -14,7 +14,8 @@ class VideoListAdapter(private val exerciseList: ArrayList<VideoExercise>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.video_exercise_design, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.video_exercise_design, parent, false)
         return ExerciseViewHolder(itemView)
     }
 
@@ -26,8 +27,6 @@ class VideoListAdapter(private val exerciseList: ArrayList<VideoExercise>) :
         holder.videoExercise.setOnPreparedListener { mediaPlayer ->
             mediaPlayer.isLooping = true
         }
-
-
     }
 
     override fun getItemCount() = exerciseList.size

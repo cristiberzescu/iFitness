@@ -14,7 +14,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 private lateinit var database: DatabaseReference
-private var databaseReference: DatabaseReference? = null
 private var firebaseDatabase: FirebaseDatabase? = null
 
 class CreateFoodActivity : ComponentActivity() {
@@ -92,13 +91,9 @@ class CreateFoodActivity : ComponentActivity() {
                         val intent = Intent(this, CaloriesActivity::class.java)
                         startActivity(intent)
                     } else Toast.makeText(this, "Fields empty", Toast.LENGTH_LONG).show()
-
-
                 }.addOnFailureListener { err ->
                     Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
                 }
-
-
             }
         }
         firebaseDatabase = FirebaseDatabase.getInstance()
@@ -106,7 +101,6 @@ class CreateFoodActivity : ComponentActivity() {
         btn_save_food.setOnClickListener {
             createNewFood()
         }
-
         btn_back.setOnClickListener {
             val intent = Intent(this, CaloriesActivity::class.java)
             startActivity(intent)

@@ -7,15 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
 import com.example.ifitness.application.Antrenamente
-import com.example.ifitness.application.MainActivity
-import com.example.ifitness.domain.Series
 import com.example.ifitness.domain.Workout
 
-class WorkoutListAdapter(private val workoutsList: ArrayList<Workout>, val context:Context) :
+class WorkoutListAdapter(private val workoutsList: ArrayList<Workout>, val context: Context) :
     RecyclerView.Adapter<WorkoutListAdapter.WorkoutsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutsViewHolder {
@@ -29,7 +26,7 @@ class WorkoutListAdapter(private val workoutsList: ArrayList<Workout>, val conte
         val workout = workoutsList[position]
         holder.nameWorkout.text = workout.name
         holder.dateWorkout.text = workout.date
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             val intent = Intent(context, Antrenamente::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             val bundle = Bundle()
@@ -38,7 +35,6 @@ class WorkoutListAdapter(private val workoutsList: ArrayList<Workout>, val conte
             context.startActivity(intent)
         }
     }
-
 
     override fun getItemCount() = workoutsList.size
 

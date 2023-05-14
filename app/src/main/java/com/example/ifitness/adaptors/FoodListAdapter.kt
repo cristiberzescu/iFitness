@@ -11,21 +11,11 @@ import com.example.ifitness.R
 import com.example.ifitness.domain.Food
 import com.example.ifitness.domain.FoodCharacteristics
 
-class FoodListAdapter(private var foodList: ArrayList<Food>//, private val listener: OnAddButtonClickListener
+class FoodListAdapter(
+    private var foodList: ArrayList<Food>
 ) :
     RecyclerView.Adapter<FoodListAdapter.MyViewHolder>() {
 
-//    inner class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        val foodName: TextView = itemView.findViewById(R.id.firebase_food_name)
-//        val addBtn: Button = itemView.findViewById(R.id.firebase_add_food)
-//
-//        fun bind(food: Food) {
-//            foodName.text = food.name
-//            addBtn.setOnClickListener {
-//                listener.onAddButtonClick(food)
-//            }
-//        }
-//    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.food_design, parent, false)
@@ -50,20 +40,11 @@ class FoodListAdapter(private var foodList: ArrayList<Food>//, private val liste
             FoodCharacteristics.setFats(currentFood.fats.toString())
             FoodCharacteristics.setCalories(currentFood.calories.toString())
         }
-//        val food = foodList[position]
-//        holder.bind(food)
-
     }
-
 
     override fun getItemCount(): Int {
         return foodList.size
     }
-
-    interface OnAddButtonClickListener {
-        fun onAddButtonClick(food: Food)
-    }
-
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

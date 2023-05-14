@@ -18,7 +18,6 @@ import com.example.ifitness.domain.FoodCharacteristics
 import com.example.ifitness.domain.UserCharacteristics
 import com.google.firebase.database.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class CaloriesActivity : ComponentActivity() {
     private lateinit var database: DatabaseReference
@@ -87,11 +86,6 @@ class CaloriesActivity : ComponentActivity() {
             val intent = Intent(this, SelectFoodActivity::class.java)
             startActivity(intent)
         }
-//        buttonAddFood.setOnClickListener {
-//            val datePicker = findViewById<DatePicker>(R.id.datePicker)
-//            datePicker.visibility = View.VISIBLE
-//        }
-
 
         serviceRecycerView = findViewById(R.id.exercise_list)
         serviceRecycerView.layoutManager = LinearLayoutManager(this)
@@ -141,62 +135,15 @@ class CaloriesActivity : ComponentActivity() {
                         totalFatsTextView.text = "Total Fats: %.1f".format(totalFats)
 
                         addTotalsToFirebase(day, totalCalories, totalProtein, totalCarbs, totalFats)
-
-
                     } else {
-                        // Dacă lista este goală, faceți TextView-ul vizibil.
                         emptyListMessage.visibility = View.VISIBLE
                     }
                 }
-
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
             })
         }
-
-
-        fun getBySelectedDate(selectedDay: String) {
-            FoodCharacteristics.setdate(selectedDay)
-            getFoodData(selectedDay)
-        }
-
-//        val datePicker = findViewById<DatePicker>(R.id.datePicker)
-//        datePicker.init(
-//            calendar.get(Calendar.YEAR),
-//            calendar.get(Calendar.MONTH),
-//            calendar.get(Calendar.DAY_OF_MONTH)
-//        ) { _, year, monthOfYear, dayOfMonth ->
-//            val selectedDate = String.format("%02d-%02d-%d", dayOfMonth, monthOfYear + 1, year)
-//            FoodCharacteristics.setdate(selectedDate)
-//            //addFoodData(selectedDate)
-//        }
-
         getFoodData(todayDate)
-
-        fun onPreviousDayButtonClick(view: View) {
-            val calendar = Calendar.getInstance()
-            calendar.add(Calendar.DAY_OF_MONTH, -1)
-            val previousDay = String.format(
-                "%02d-%02d-%d",
-                calendar.get(Calendar.DAY_OF_MONTH),
-                calendar.get(Calendar.MONTH) + 1,
-                calendar.get(Calendar.YEAR)
-            )
-
-            // Ștergeți elementele din lista de alimente și reinițializați variabilele care țin evidența totalului de calorii
-            serviceArrayList.clear()
-            totalCalories = 0
-            totalProtein = 0F
-            totalCarbs = 0F
-            totalFats = 0F
-
-            // Actualizați afișajul cu datele din ziua anterioară
-            FoodCharacteristics.setdate(previousDay)
-            getFoodData(previousDay)
-        }
-
-
     }
-
 }

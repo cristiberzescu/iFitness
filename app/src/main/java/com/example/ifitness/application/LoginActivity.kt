@@ -18,6 +18,7 @@ import com.google.firebase.database.*
 class LoginActivity : ComponentActivity() {
     private var firebaseDatabase: FirebaseDatabase? = null
     private var databaseReference: DatabaseReference? = null
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +32,11 @@ class LoginActivity : ComponentActivity() {
         databaseReference = firebaseDatabase?.getReference("users")
 
         var count: Int? = 0
-        var toast: Toast = Toast.makeText(applicationContext, "User name or Password incorrect!", Toast.LENGTH_SHORT)
+        var toast: Toast = Toast.makeText(
+            applicationContext,
+            "User name or Password incorrect!",
+            Toast.LENGTH_SHORT
+        )
 
         var name = findViewById(R.id.et_user_name) as EditText
         var password = findViewById(R.id.et_password) as EditText
@@ -43,24 +48,21 @@ class LoginActivity : ComponentActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (ds in snapshot.children) {
 
-                        //val id = ds.key.toString()
                         val userName = ds.child("userName").value.toString()
                         val userPassword = ds.child("userPassword").value.toString()
                         val userEmail = ds.child("userEmail").value.toString()
 
                         if (name.text.toString() == userName && password.text.toString() == userPassword) {
 
-                            //ProfileCharacteristics.setKey(id)
                             UserCharacteristics.setUsername(userName)
                             UserCharacteristics.setEmail(userEmail)
                             startActivity(intent)
                             toast.cancel()
-
                             count = 1
-
+                        } else {
+                            count = 0
                         }
                     }
-
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -70,7 +72,6 @@ class LoginActivity : ComponentActivity() {
 
             Handler().postDelayed({
                 if (count == 0) {
-                    //Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
                     toast.show()
                 }
             }, 150)

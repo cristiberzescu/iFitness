@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.VideoView
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,11 +16,8 @@ import com.google.firebase.database.*
 
 class WorkoutActivity : ComponentActivity() {
     private lateinit var database: DatabaseReference
-    private lateinit var videoView: VideoView
     private lateinit var serviceRecycerView: RecyclerView
     private lateinit var serviceArrayList: ArrayList<VideoExercise>
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.workout_activity)
@@ -29,7 +25,6 @@ class WorkoutActivity : ComponentActivity() {
         serviceRecycerView = findViewById(R.id.exerciseList)
         serviceRecycerView.layoutManager = LinearLayoutManager(this)
         serviceRecycerView.setHasFixedSize(true)
-
         serviceArrayList = arrayListOf<VideoExercise>()
 
         var buttonMenu = findViewById(R.id.main_button) as ImageButton
@@ -63,17 +58,13 @@ class WorkoutActivity : ComponentActivity() {
             startActivity(mapIntent)
         }
 
-        val bundle=intent.extras
-
+        val bundle = intent.extras
         if (bundle != null) {
-            muscleGroupName.text=bundle.getString("muscleGroup").toString()
-        }
-
-
-        if (bundle != null) {
-            database = FirebaseDatabase.getInstance().getReference("exercises").child(bundle.getString("muscleGroup")
-                .toString())
-
+            muscleGroupName.text = bundle.getString("muscleGroup").toString()
+            database = FirebaseDatabase.getInstance().getReference("exercises").child(
+                bundle.getString("muscleGroup")
+                    .toString()
+            )
         }
 
         database.addValueEventListener(object : ValueEventListener {
@@ -84,11 +75,7 @@ class WorkoutActivity : ComponentActivity() {
                         serviceArrayList.add(exercise!!)
                     }
                     serviceRecycerView.adapter = VideoListAdapter(serviceArrayList)
-
-
                 } else {
-                    // Dacă lista este goală, faceți TextView-ul vizibil.
-
                 }
             }
 
@@ -96,28 +83,5 @@ class WorkoutActivity : ComponentActivity() {
                 Log.e("WorkoutsActivity", "Failed to read value.", error.toException())
             }
         })
-
-
     }
 }
-
-
-//
-//        videoView = findViewById(R.id.video_view)
-//
-//        database = FirebaseDatabase.getInstance().getReference("exercises").child("chest")
-//            .child("bench press").child("url")
-//
-//        database.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                val url = snapshot.getValue(String::class.java)
-//                url?.let {
-//                    videoView.setVideoPath(url)
-//                    videoView.start()
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                Log.e("WorkoutsActivity", "Failed to read value.", error.toException())
-//            }
-//        })

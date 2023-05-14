@@ -43,10 +43,8 @@ class MainActivity : ComponentActivity() {
 
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Obține valoarea câmpului "totalCalories"
                 val totalCalories = dataSnapshot.child("totalCalories").getValue(Double::class.java)
 
-                // Utilizează valoarea obținută
                 if (totalCalories.toString() == "null") {
                     userCalories.text = "You have no foods added yet"
                 } else {
@@ -55,7 +53,6 @@ class MainActivity : ComponentActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Tratează erorile în cazul în care citirea datelor a fost anulată sau a eșuat
             }
         })
 
