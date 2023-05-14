@@ -15,7 +15,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/firebase_food_name"
+                android:id="@+id/series_name"
                 android:layout_width="105dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"

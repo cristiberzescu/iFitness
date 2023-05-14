@@ -35,14 +35,21 @@ class ExerciseListAdapter(private val exerciseList: ArrayList<Exercise>, var con
             SeriesListAdapter(exercise.series as ArrayList<Series>)
 
         holder.addSeriesButton.setOnClickListener {
-            val dialog = AddSeriesDialog()
+            val dialog = AddSeriesDialog(context, this, position)
             //val fragmentManager = (context as Antrenamente).fragmentManager
-           // dialog.show(fragmentManager, "Add series")
+            dialog.show()
         }
+
 
         //holder.setSeriesList(exercise.series as ArrayList<Series>)
     }
 
+    fun addSeries(repetitions: Int, weight: Int, position: Int) {
+        val exercise = exerciseList[position]
+        val series = Series(repetitions, weight)
+        exercise.series!!.add(series)
+        notifyDataSetChanged()
+    }
 
     override fun getItemCount() = exerciseList.size
 

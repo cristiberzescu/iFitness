@@ -155,7 +155,7 @@ class Antrenamente : ComponentActivity() {
             exerciseRecyclerView.layoutManager = LinearLayoutManager(this)
             exerciseRecyclerView.setHasFixedSize(true)
             exerciseAdapter =
-                ExerciseListAdapter(workout?.exercises as ArrayList<Exercise>, applicationContext )
+                ExerciseListAdapter(workout?.exercises as ArrayList<Exercise>, this)
             exerciseRecyclerView.adapter = exerciseAdapter
             //ExerciseListAdapter(workout?.exercises as ArrayList<Exercise>, applicationContext)
         }

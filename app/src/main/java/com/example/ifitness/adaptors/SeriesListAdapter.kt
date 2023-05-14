@@ -23,9 +23,11 @@ class SeriesListAdapter(private var seriesList: ArrayList<Series>) :
         val series = seriesList[position]
         holder.repetitions.text = series.repetitions.toString()
         holder.weight.text = series.weight.toString()
+        holder.seriesName.text = "Series ${position + 1}"
     }
 
     override fun getItemCount() = seriesList.size
+
     @SuppressLint("NotifyDataSetChanged")
     fun setSeriesList(newList: ArrayList<Series>) {
         seriesList = newList
@@ -35,5 +37,6 @@ class SeriesListAdapter(private var seriesList: ArrayList<Series>) :
     class ExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val repetitions: TextView = itemView.findViewById(R.id.firebase_exercise_repetitions)
         val weight: TextView = itemView.findViewById(R.id.firebase_exercise_weight)
+        val seriesName: TextView = itemView.findViewById(R.id.series_name)
     }
 }

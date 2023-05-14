@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 data class Exercise(
     var name: String = "",
-    var series: List<Series>? = null
+    var series: MutableList<Series>? = null
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
