@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.security.MessageDigest
 
 class RegisterActivity : ComponentActivity() {
     private lateinit var database: DatabaseReference
@@ -59,6 +60,13 @@ class RegisterActivity : ComponentActivity() {
                 userConfirmPassword.error = "Please enter a matching password"
             }
 
+            fun encryptPassword(password: String): String {
+                val digest = MessageDigest.getInstance("SHA-256")
+                val bytes = digest.digest(password.toByteArray())
+                return bytes.joinToString("") { "%02x".format(it) }
+            }
+
+
 //            Password can contain digits [0-9].
 //            Password can contain lowercase Latin characters [a-z].
 //            Password can contain uppercase Latin characters [A-Z].
@@ -96,7 +104,7 @@ class RegisterActivity : ComponentActivity() {
                     }
                 })
                 if (count == 0) {
-                    val user = User(email, user_name, password)
+                    val user = User(email, user_name, encryptPassword(password))
                     database.child("users").child(user_name).setValue(user).addOnCompleteListener {
                             Toast.makeText(
                                 this, "Data inserted successfully", Toast.LENGTH_LONG

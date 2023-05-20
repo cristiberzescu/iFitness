@@ -14,6 +14,7 @@ import androidx.activity.ComponentActivity
 import com.example.ifitness.R
 import com.example.ifitness.domain.UserCharacteristics
 import com.google.firebase.database.*
+import java.security.MessageDigest
 
 class LoginActivity : ComponentActivity() {
     private var firebaseDatabase: FirebaseDatabase? = null
@@ -43,6 +44,13 @@ class LoginActivity : ComponentActivity() {
         var buttonLogin = findViewById(R.id.btn_login) as Button
         var buttonRegister = findViewById(R.id.btn_register) as Button
         buttonLogin.setOnClickListener {
+
+            fun encryptPassword(password: String): String {
+                val digest = MessageDigest.getInstance("SHA-256")
+                val bytes = digest.digest(password.toByteArray())
+                return bytes.joinToString("") { "%02x".format(it) }
+            }
+
             val intent = Intent(this, MainActivity::class.java)
             databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -52,7 +60,7 @@ class LoginActivity : ComponentActivity() {
                         val userPassword = ds.child("userPassword").value.toString()
                         val userEmail = ds.child("userEmail").value.toString()
 
-                        if (name.text.toString() == userName && password.text.toString() == userPassword) {
+                        if (name.text.toString() == userName && encryptPassword(password.text.toString()) == userPassword) {
 
                             UserCharacteristics.setUsername(userName)
                             UserCharacteristics.setEmail(userEmail)
