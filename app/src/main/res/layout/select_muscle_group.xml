@@ -47,42 +47,42 @@
                 android:id="@+id/chest_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Piept"
+                android:text="Chest"
                 app:layout_constraintTop_toBottomOf="@+id/select_group"/>
 
             <Button
                 android:id="@+id/back_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spate"
+                android:text="Back"
                 app:layout_constraintTop_toBottomOf="@+id/chest_button"/>
 
             <Button
                 android:id="@+id/shoulders_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Umeri"
+                android:text="Shoulders"
                 app:layout_constraintTop_toBottomOf="@+id/back_button"/>
 
             <Button
                 android:id="@+id/legs_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Picioare"
+                android:text="Legs"
                 app:layout_constraintTop_toBottomOf="@+id/shoulders_button"/>
 
             <Button
                 android:id="@+id/arms_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Brate"
+                android:text="Arms"
                 app:layout_constraintTop_toBottomOf="@+id/legs_button"/>
 
             <Button
                 android:id="@+id/abs_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Abdomen"
+                android:text="Abs"
                 app:layout_constraintTop_toBottomOf="@+id/arms_button"/>
 
 
