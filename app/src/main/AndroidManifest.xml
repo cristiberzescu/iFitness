@@ -49,6 +49,14 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".application.MeasurementActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".application.TrackingActivity"
             android:exported="false"
             android:screenOrientation="portrait">

@@ -16,16 +16,16 @@ import com.google.firebase.database.*
 
 class WorkoutActivity : ComponentActivity() {
     private lateinit var database: DatabaseReference
-    private lateinit var serviceRecycerView: RecyclerView
-    private lateinit var serviceArrayList: ArrayList<VideoExercise>
+    private lateinit var exerciseRecycerView: RecyclerView
+    private lateinit var exerciseArrayList: ArrayList<VideoExercise>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.workout_activity)
 
-        serviceRecycerView = findViewById(R.id.exerciseList)
-        serviceRecycerView.layoutManager = LinearLayoutManager(this)
-        serviceRecycerView.setHasFixedSize(true)
-        serviceArrayList = arrayListOf<VideoExercise>()
+        exerciseRecycerView = findViewById(R.id.exerciseList)
+        exerciseRecycerView.layoutManager = LinearLayoutManager(this)
+        exerciseRecycerView.setHasFixedSize(true)
+        exerciseArrayList = arrayListOf<VideoExercise>()
 
         var buttonMenu = findViewById(R.id.main_button) as ImageButton
         var buttonCalories = findViewById(R.id.calories_button) as ImageButton
@@ -72,9 +72,9 @@ class WorkoutActivity : ComponentActivity() {
                 if (snapshot.exists()) {
                     for (serviceSnapshot in snapshot.children) {
                         val exercise = serviceSnapshot.getValue(VideoExercise::class.java)
-                        serviceArrayList.add(exercise!!)
+                        exerciseArrayList.add(exercise!!)
                     }
-                    serviceRecycerView.adapter = VideoListAdapter(serviceArrayList)
+                    exerciseRecycerView.adapter = VideoListAdapter(exerciseArrayList)
                 } else {
                 }
             }

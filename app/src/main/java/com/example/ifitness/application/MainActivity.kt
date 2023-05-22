@@ -79,7 +79,7 @@ class MainActivity : ComponentActivity() {
             startActivity(intent)
         }
         buttonTracking.setOnClickListener {
-            val intent = Intent(this, TrackingActivity::class.java)
+            val intent = Intent(this, SelectBodyPartActivity::class.java)
             startActivity(intent)
         }
         buttonMap.setOnClickListener {

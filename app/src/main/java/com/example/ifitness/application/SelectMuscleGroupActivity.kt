@@ -19,7 +19,7 @@ class SelectMuscleGroupActivity : ComponentActivity() {
         var buttonTracking = findViewById(R.id.tracking_button) as ImageButton
         var buttonMap = findViewById(R.id.map_button) as ImageButton
 
-        var chestButton = findViewById(R.id.chest_button) as Button
+        var chestButton = findViewById(R.id.height) as Button
         var backMuscleButton = findViewById(R.id.back_button) as Button
         var shouldersButton = findViewById(R.id.shoulders_button) as Button
         var armsButton = findViewById(R.id.arms_button) as Button
