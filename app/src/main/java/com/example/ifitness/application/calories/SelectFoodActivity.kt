@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
 import com.example.ifitness.adapters.FoodListAdapter
 import com.example.ifitness.domain.Food
-import com.example.ifitness.domain.FoodCharacteristics
 import com.google.firebase.database.*
 
 class SelectFoodActivity : ComponentActivity() {
@@ -21,6 +20,7 @@ class SelectFoodActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.select_food_activity)
+
         var btn_back = findViewById<Button>(R.id.btn_back)
         var food_name = findViewById(R.id.food_name_search) as SearchView
 
@@ -43,11 +43,8 @@ class SelectFoodActivity : ComponentActivity() {
         foodRecycerView.layoutManager = LinearLayoutManager(this)
         foodRecycerView.setHasFixedSize(true)
         foodArrayList = arrayListOf<Food>()
-    }
 
-    fun onAddButtonClick() {
-        val intent = Intent(this, AddFoodActivity::class.java)
-        startActivity(intent)
+        getFoodData("")
     }
 
     private fun getFoodData(text: String) {
@@ -64,11 +61,7 @@ class SelectFoodActivity : ComponentActivity() {
                             foodArrayList.add(food!!)
                         }
                     }
-                    foodRecycerView.adapter = FoodListAdapter(foodArrayList)
-                }
-                if (FoodCharacteristics.getName()?.isNotEmpty() == true) {
-                    onAddButtonClick()
-                    return
+                    foodRecycerView.adapter = FoodListAdapter(foodArrayList, applicationContext)
                 }
             }
 

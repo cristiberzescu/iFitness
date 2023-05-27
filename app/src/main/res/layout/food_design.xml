@@ -121,21 +121,6 @@
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/firebase_add_food"
-                android:layout_width="36dp"
-                android:layout_height="26dp"
-                android:text="+"
-                android:textSize="16sp"
-                android:textColor="#000"
-                android:background="#E4E2D5"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/food_grams"
-                app:layout_constraintVertical_bias="0.459" />
-
         </LinearLayout>
 
     </LinearLayout>

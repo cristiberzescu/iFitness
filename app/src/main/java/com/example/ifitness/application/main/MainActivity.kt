@@ -38,7 +38,6 @@ class MainActivity : ComponentActivity() {
 
         var buttonBack = findViewById(R.id.btn_back) as Button
         var buttonMeasurement = findViewById(R.id.btn_measurement) as Button
-        var buttonMenu = findViewById(R.id.main_button) as ImageButton
         var buttonCalories = findViewById(R.id.calories_button) as ImageButton
         var buttonWorkouts = findViewById(R.id.workouts_button) as ImageButton
         var buttonTracking = findViewById(R.id.tracking_button) as ImageButton
@@ -102,10 +101,6 @@ class MainActivity : ComponentActivity() {
             startActivity(intent)
         }
 
-        buttonMenu.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
         buttonCalories.setOnClickListener {
             val intent = Intent(this, CaloriesActivity::class.java)
             startActivity(intent)

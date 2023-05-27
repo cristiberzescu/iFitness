@@ -130,7 +130,7 @@ class CaloriesActivity : ComponentActivity() {
                             val food = serviceSnapshot.getValue(Food::class.java)
                             serviceArrayList.add(food!!)
                         }
-                        serviceRecycerView.adapter = FoodListAdapter(serviceArrayList)
+                        serviceRecycerView.adapter = FoodListAdapter(serviceArrayList, applicationContext)
                         for (food in serviceArrayList) {
                             totalCalories += food.calories
                             totalProtein += food.protein
