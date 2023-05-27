@@ -1,4 +1,4 @@
-package com.example.ifitness.application
+package com.example.ifitness.application.main
 
 import android.content.Intent
 import android.os.Build
@@ -14,8 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
-import com.example.ifitness.adaptors.MeasurementListAdapter
-import com.example.ifitness.domain.Food
+import com.example.ifitness.adapters.MeasurementListAdapter
 import com.example.ifitness.domain.Measurement
 import com.example.ifitness.domain.UserCharacteristics
 import com.google.firebase.database.*
@@ -40,10 +39,11 @@ class MeasurementActivity : ComponentActivity() {
         val measurementInputEditText = findViewById<EditText>(R.id.edit_measurement)
         val bodyPart = findViewById<TextView>(R.id.body_part)
         val emptyListMessage = findViewById(R.id.tv_empty_list) as TextView
+        var bodyPartName: String = "nothing"
 
         val bundle = intent.extras
         if (bundle != null) {
-            val bodyPartName = bundle.getString("body_part").toString()
+            bodyPartName = bundle.getString("body_part").toString()
 
             bodyPart.text = bodyPartName
             database = FirebaseDatabase.getInstance().getReference("users")
@@ -77,6 +77,9 @@ class MeasurementActivity : ComponentActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                                 measurementInputEditText.text.clear()
+                                if (bodyPartName == "Weight") {
+                                    UserCharacteristics.setWeight(measurementValue)
+                                }
                             } else {
                                 Toast.makeText(
                                     this,

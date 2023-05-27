@@ -1,4 +1,4 @@
-package com.example.ifitness.application
+package com.example.ifitness.application.exercises
 
 import android.content.Intent
 import android.net.Uri
@@ -7,6 +7,9 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.activity.ComponentActivity
 import com.example.ifitness.R
+import com.example.ifitness.application.main.MainActivity
+import com.example.ifitness.application.tracking.TrackingActivity
+import com.example.ifitness.application.calories.CaloriesActivity
 
 class SelectMuscleGroupActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

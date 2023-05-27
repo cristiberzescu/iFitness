@@ -1,4 +1,4 @@
-package com.example.ifitness.application
+package com.example.ifitness.application.calories
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -9,7 +9,7 @@ import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
-import com.example.ifitness.adaptors.FoodListAdapter
+import com.example.ifitness.adapters.FoodListAdapter
 import com.example.ifitness.domain.Food
 import com.example.ifitness.domain.FoodCharacteristics
 import com.google.firebase.database.*

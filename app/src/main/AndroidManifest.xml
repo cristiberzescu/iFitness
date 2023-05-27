@@ -33,7 +33,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.MainActivity"
+            android:name=".application.main.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -41,7 +41,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.SelectBodyPartActivity"
+            android:name=".application.main.SelectBodyPartActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -49,7 +49,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.MeasurementActivity"
+            android:name=".application.main.MeasurementActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -57,7 +57,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.TrackingActivity"
+            android:name=".application.tracking.TrackingActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -65,7 +65,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.SelectMuscleGroupActivity"
+            android:name=".application.exercises.SelectMuscleGroupActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -73,7 +73,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.CaloriesActivity"
+            android:name=".application.calories.CaloriesActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -81,7 +81,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.MapActivity"
+            android:name=".application.map.MapActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -89,7 +89,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.WorkoutActivity"
+            android:name=".application.exercises.WorkoutActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -97,7 +97,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.CreateFoodActivity"
+            android:name=".application.calories.CreateFoodActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -105,7 +105,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.SelectFoodActivity"
+            android:name=".application.calories.SelectFoodActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -113,7 +113,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.AddFoodActivity"
+            android:name=".application.calories.AddFoodActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -129,7 +129,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.SelectExerciseActivity"
+            android:name=".application.tracking.SelectExerciseActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
@@ -137,7 +137,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".application.Antrenamente"
+            android:name=".application.tracking.CreateWorkoutActivity"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data

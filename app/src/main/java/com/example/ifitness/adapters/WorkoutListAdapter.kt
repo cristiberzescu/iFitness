@@ -1,4 +1,4 @@
-package com.example.ifitness.adaptors
+package com.example.ifitness.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
-import com.example.ifitness.application.Antrenamente
+import com.example.ifitness.application.tracking.CreateWorkoutActivity
 import com.example.ifitness.domain.Workout
 
 class WorkoutListAdapter(private val workoutsList: ArrayList<Workout>, val context: Context) :
@@ -27,7 +27,7 @@ class WorkoutListAdapter(private val workoutsList: ArrayList<Workout>, val conte
         holder.nameWorkout.text = workout.name
         holder.dateWorkout.text = workout.date
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, Antrenamente::class.java)
+            val intent = Intent(context, CreateWorkoutActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             val bundle = Bundle()
             bundle.putParcelable("workout", workout)

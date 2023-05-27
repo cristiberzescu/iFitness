@@ -1,4 +1,4 @@
-package com.example.ifitness.adaptors
+package com.example.ifitness.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

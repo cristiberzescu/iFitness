@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.ifitness.R
+import com.example.ifitness.application.main.MainActivity
 import com.example.ifitness.domain.UserCharacteristics
 import com.google.firebase.database.*
 import java.security.MessageDigest

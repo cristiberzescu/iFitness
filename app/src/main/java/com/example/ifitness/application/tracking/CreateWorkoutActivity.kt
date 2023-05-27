@@ -1,4 +1,4 @@
-package com.example.ifitness.application
+package com.example.ifitness.application.tracking
 
 import android.app.Activity
 import android.content.Context
@@ -15,7 +15,7 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
-import com.example.ifitness.adaptors.ExerciseListAdapter
+import com.example.ifitness.adapters.ExerciseListAdapter
 import com.example.ifitness.domain.Exercise
 import com.example.ifitness.domain.Series
 import com.example.ifitness.domain.UserCharacteristics
@@ -27,7 +27,7 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class Antrenamente : ComponentActivity() {
+class CreateWorkoutActivity : ComponentActivity() {
     var workout: Workout? = null
     private lateinit var exerciseRecyclerView: RecyclerView
     private lateinit var database: DatabaseReference
@@ -58,7 +58,7 @@ class Antrenamente : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.antrenamente)
+        setContentView(R.layout.create_workout_activity)
 
         database = FirebaseDatabase.getInstance().getReference("users")
 

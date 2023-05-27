@@ -1,4 +1,4 @@
-package com.example.ifitness.adaptors
+package com.example.ifitness.adapters
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,4 +1,4 @@
-package com.example.ifitness.application
+package com.example.ifitness.application.calories
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.ifitness.R
+import com.example.ifitness.application.main.MainActivity
 import com.example.ifitness.domain.Food
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

@@ -1,6 +1,5 @@
-package com.example.ifitness.application
+package com.example.ifitness.application.tracking
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -8,12 +7,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
 import androidx.activity.ComponentActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
-import com.example.ifitness.adaptors.FoodListAdapter
 import com.example.ifitness.domain.*
-import com.google.firebase.database.*
 
 class SelectExerciseActivity : ComponentActivity() {
     private lateinit var searchEditText: EditText

@@ -1,4 +1,4 @@
-package com.example.ifitness.application
+package com.example.ifitness.application.calories
 
 import android.content.Intent
 import android.os.Bundle

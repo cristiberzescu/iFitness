@@ -1,4 +1,4 @@
-package com.example.ifitness.adaptors
+package com.example.ifitness.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
-import com.example.ifitness.domain.Exercise
 import com.example.ifitness.domain.Series
 
 class SeriesListAdapter(private var seriesList: ArrayList<Series>) :

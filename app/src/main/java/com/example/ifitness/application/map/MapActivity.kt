@@ -1,10 +1,14 @@
-package com.example.ifitness.application
+package com.example.ifitness.application.map
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import androidx.activity.ComponentActivity
 import com.example.ifitness.R
+import com.example.ifitness.application.calories.CaloriesActivity
+import com.example.ifitness.application.exercises.SelectMuscleGroupActivity
+import com.example.ifitness.application.main.MainActivity
+import com.example.ifitness.application.tracking.TrackingActivity
 
 class MapActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.example.ifitness.application
+package com.example.ifitness.application.tracking
 
 import android.content.Intent
 import android.net.Uri
@@ -11,7 +11,10 @@ import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
-import com.example.ifitness.adaptors.WorkoutListAdapter
+import com.example.ifitness.adapters.WorkoutListAdapter
+import com.example.ifitness.application.calories.CaloriesActivity
+import com.example.ifitness.application.exercises.SelectMuscleGroupActivity
+import com.example.ifitness.application.main.MainActivity
 import com.example.ifitness.domain.UserCharacteristics
 import com.example.ifitness.domain.Workout
 import com.google.firebase.database.*
@@ -56,7 +59,7 @@ class TrackingActivity : ComponentActivity() {
             startActivity(mapIntent)
         }
         buttonAddWorkout.setOnClickListener {
-            val intent = Intent(this, Antrenamente::class.java)
+            val intent = Intent(this, CreateWorkoutActivity::class.java)
             startActivity(intent)
         }
 

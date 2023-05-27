@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import com.example.ifitness.R
-import com.example.ifitness.adaptors.ExerciseListAdapter
+import com.example.ifitness.adapters.ExerciseListAdapter
 
 class AddSeriesDialog(context: Context, var listener: ExerciseListAdapter, var position: Int) :
     Dialog(context) {

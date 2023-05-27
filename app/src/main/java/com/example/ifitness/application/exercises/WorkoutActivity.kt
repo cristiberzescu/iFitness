@@ -1,4 +1,4 @@
-package com.example.ifitness.application
+package com.example.ifitness.application.exercises
 
 import android.content.Intent
 import android.net.Uri
@@ -10,7 +10,10 @@ import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ifitness.R
-import com.example.ifitness.adaptors.VideoListAdapter
+import com.example.ifitness.adapters.VideoListAdapter
+import com.example.ifitness.application.main.MainActivity
+import com.example.ifitness.application.tracking.TrackingActivity
+import com.example.ifitness.application.calories.CaloriesActivity
 import com.example.ifitness.domain.VideoExercise
 import com.google.firebase.database.*
 
@@ -60,7 +63,7 @@ class WorkoutActivity : ComponentActivity() {
 
         val bundle = intent.extras
         if (bundle != null) {
-            muscleGroupName.text = bundle.getString("muscleGroup").toString()
+            muscleGroupName.text = bundle.getString("muscleGroup").toString().uppercase()
             database = FirebaseDatabase.getInstance().getReference("exercises").child(
                 bundle.getString("muscleGroup")
                     .toString()
