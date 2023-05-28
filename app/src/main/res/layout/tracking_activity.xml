@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".application.LoginActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Workouts"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/workouts_list"
@@ -20,48 +32,34 @@
 
     <TextView
         android:id="@+id/tv_empty_list"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="No workouts yet"
-        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="22sp"
         android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintBottom_toTopOf="@+id/add_workout_button"
-        android:gravity="center"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/add_workout_button"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Add workout"
+        android:text="   Add workout   "
+        android:background="@drawable/curve_shape"
         app:layout_constraintBottom_toTopOf="@+id/barLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="211dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="36dp"
-        android:text="Workouts"
-        android:textAlignment="center"
-        android:textColor="#000"
-        android:textSize="30sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:id="@+id/barLayout"
-        android:layout_width="417dp"
-        android:layout_height="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="bottom"
         android:orientation="horizontal"
         android:visibility="visible"
@@ -71,38 +69,43 @@
 
         <ImageButton
             android:id="@+id/main_button"
-            android:layout_width="wrap_content"
+            android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:src="?attr/homeAsUpIndicator" />
+            android:scaleType="centerCrop"
+            android:background="@drawable/profile_img" />
 
         <ImageButton
             android:id="@+id/calories_button"
-            android:layout_width="wrap_content"
+            android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_dialog_map" />
+            android:scaleType="centerCrop"
+            android:background="@drawable/food_img" />
 
         <ImageButton
             android:id="@+id/workouts_button"
-            android:layout_width="wrap_content"
+            android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_menu_edit" />
+            android:scaleType="centerCrop"
+            android:background="@drawable/exercise_img" />
 
         <ImageButton
             android:id="@+id/tracking_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_menu_gallery" />
+            android:scaleType="centerCrop"
+            android:background="@drawable/notes_img"/>
 
         <ImageButton
             android:id="@+id/map_button"
-            android:layout_width="wrap_content"
+            android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_menu_add" />
+            android:scaleType="centerCrop"
+            android:background="@drawable/map_img" />
     </LinearLayout>
 
 

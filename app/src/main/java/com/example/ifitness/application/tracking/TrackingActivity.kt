@@ -30,7 +30,6 @@ class TrackingActivity : ComponentActivity() {
         var buttonMenu = findViewById(R.id.main_button) as ImageButton
         var buttonCalories = findViewById(R.id.calories_button) as ImageButton
         var buttonWorkouts = findViewById(R.id.workouts_button) as ImageButton
-        var buttonTracking = findViewById(R.id.tracking_button) as ImageButton
         var buttonMap = findViewById(R.id.map_button) as ImageButton
         var buttonAddWorkout = findViewById(R.id.add_workout_button) as Button
         var emptyListMessage = findViewById(R.id.tv_empty_list) as TextView
@@ -47,10 +46,7 @@ class TrackingActivity : ComponentActivity() {
             val intent = Intent(this, SelectMuscleGroupActivity::class.java)
             startActivity(intent)
         }
-        buttonTracking.setOnClickListener {
-            val intent = Intent(this, TrackingActivity::class.java)
-            startActivity(intent)
-        }
+
         buttonMap.setOnClickListener {
             val query = "gym Timisoara"
             val gmmIntentUri = Uri.parse("geo:0,0?q=$query")

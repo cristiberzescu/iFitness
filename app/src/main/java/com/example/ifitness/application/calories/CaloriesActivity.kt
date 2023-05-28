@@ -56,7 +56,6 @@ class CaloriesActivity : ComponentActivity() {
         val totalCarbsTextView = findViewById<TextView>(R.id.total_carbs_text_view)
         val totalFatsTextView = findViewById<TextView>(R.id.total_fats_text_view)
         var buttonMenu = findViewById(R.id.main_button) as ImageButton
-        var buttonCalories = findViewById(R.id.calories_button) as ImageButton
         var buttonWorkouts = findViewById(R.id.workouts_button) as ImageButton
         var buttonTracking = findViewById(R.id.tracking_button) as ImageButton
         var buttonMap = findViewById(R.id.map_button) as ImageButton
@@ -67,10 +66,7 @@ class CaloriesActivity : ComponentActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-        buttonCalories.setOnClickListener {
-            val intent = Intent(this, CaloriesActivity::class.java)
-            startActivity(intent)
-        }
+
         buttonWorkouts.setOnClickListener {
             val intent = Intent(this, SelectMuscleGroupActivity::class.java)
             startActivity(intent)
