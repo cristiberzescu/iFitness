@@ -31,9 +31,9 @@ class FoodListAdapter(
 
         holder.name.text = currentFood.name
         holder.calories.text = currentFood.calories.toString() + "cal"
-        holder.protein.text = String.format("%.1f", currentFood.protein) + "g"
-        holder.carbs.text = String.format("%.1f", currentFood.carbs) + "g"
-        holder.fats.text = String.format("%.1f", currentFood.fats) + "g"
+        holder.protein.text = "Protein: " + String.format("%.1f", currentFood.protein) + "g"
+        holder.carbs.text = "Carbs: " + String.format("%.1f", currentFood.carbs) + "g"
+        holder.fats.text = "Fat: " + String.format("%.1f", currentFood.fats) + "g"
         holder.grams.text = currentFood.grams.toString() + "g"
         holder.itemView.setOnClickListener {
             FoodCharacteristics.setName(currentFood.name)

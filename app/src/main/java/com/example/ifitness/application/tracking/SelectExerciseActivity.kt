@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import androidx.activity.ComponentActivity
 import com.example.ifitness.R
+import com.example.ifitness.application.calories.CaloriesActivity
+
 class SelectExerciseActivity : ComponentActivity() {
-    private lateinit var searchEditText: EditText
-    private lateinit var searchListView: ListView
     private lateinit var adapter: ArrayAdapter<String>
     private val initialData = mutableListOf(
         "impins la piept",
@@ -21,7 +22,25 @@ class SelectExerciseActivity : ComponentActivity() {
         "tractiuni",
         "flexii biceps",
         "extensii triceps",
-        "indreptari"
+        "indreptari",
+        "impins la piept",
+        "fluturari",
+        "genoflexiuni",
+        "tractiuni",
+        "flexii biceps",
+        "extensii triceps",
+        "impins la piept",
+        "fluturari",
+        "genoflexiuni",
+        "tractiuni",
+        "flexii biceps",
+        "extensii triceps",
+        "impins la piept",
+        "fluturari",
+        "genoflexiuni",
+        "tractiuni",
+        "flexii biceps",
+        "extensii triceps"
     )
     private val filteredData = mutableListOf<String>()
 
@@ -29,8 +48,15 @@ class SelectExerciseActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.select_exercise)
 
-        searchEditText = findViewById(R.id.search_edittext)
-        searchListView = findViewById(R.id.search_listview)
+        var searchEditText = findViewById(R.id.search_edittext) as EditText
+        var searchListView = findViewById(R.id.search_listview) as ListView
+        var btnBack = findViewById(R.id.btn_back) as Button
+
+        btnBack.setOnClickListener {
+            val intent = Intent(this, CreateWorkoutActivity::class.java)
+            startActivity(intent)
+        }
+
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, filteredData)
         searchListView.adapter = adapter
 

@@ -37,11 +37,11 @@ class AddFoodActivity : ComponentActivity() {
         var food_grams = findViewById(R.id.food_grams) as EditText
 
 
-        food_name.text = FoodCharacteristics.getName()
-        food_calories.text = FoodCharacteristics.getCalories()
-        food_protein.text = FoodCharacteristics.getProtein()
-        food_carbs.text = FoodCharacteristics.getCarbs()
-        food_fats.text = FoodCharacteristics.getFats()
+        food_name.text = FoodCharacteristics.getName().toString().uppercase()
+        food_calories.text = FoodCharacteristics.getCalories() + " kcal"
+        food_protein.text = FoodCharacteristics.getProtein() + " g"
+        food_carbs.text = FoodCharacteristics.getCarbs() + " g"
+        food_fats.text = FoodCharacteristics.getFats() + " g"
 
         val todayDate = FoodCharacteristics.getdate()
 
