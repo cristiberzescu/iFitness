@@ -47,10 +47,10 @@ class AddFoodActivity : ComponentActivity() {
 
         fun addFood() {
             val foodName = food_name.text.toString()
-            val foodCalories = food_calories.text.toString()
-            val foodProtein = food_protein.text.toString()
-            val foodCarbs = food_carbs.text.toString()
-            val foodFat = food_fats.text.toString()
+            val foodCalories = FoodCharacteristics.getCalories().toString()
+            val foodProtein = FoodCharacteristics.getProtein().toString()
+            val foodCarbs = FoodCharacteristics.getCarbs().toString()
+            val foodFat = FoodCharacteristics.getFats().toString()
             val foodGrams = food_grams.text.toString()
 
             if ((!(foodGrams.matches("^[0-9]*$".toRegex()))) || foodGrams.isEmpty()) {

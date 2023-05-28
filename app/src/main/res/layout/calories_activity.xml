@@ -82,6 +82,7 @@
         android:textColor="@color/black"
         android:textSize="22sp"
         android:visibility="invisible"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/barLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

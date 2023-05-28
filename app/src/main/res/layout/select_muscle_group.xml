@@ -27,6 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Chest"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/grey_shape"
         app:layout_constraintTop_toBottomOf="@+id/select_group" />
 
     <Button
@@ -34,6 +37,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Back"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/grey_shape"
         app:layout_constraintTop_toBottomOf="@+id/chest_button" />
 
     <Button
@@ -41,6 +48,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Shoulders"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/grey_shape"
         app:layout_constraintTop_toBottomOf="@+id/back_button" />
 
     <Button
@@ -48,6 +59,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Legs"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/grey_shape"
         app:layout_constraintTop_toBottomOf="@+id/shoulders_button" />
 
     <Button
@@ -55,6 +70,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Arms"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/grey_shape"
         app:layout_constraintTop_toBottomOf="@+id/legs_button" />
 
     <Button
@@ -62,6 +81,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Abs"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/grey_shape"
         app:layout_constraintTop_toBottomOf="@+id/arms_button" />
 
 
