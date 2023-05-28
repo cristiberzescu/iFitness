@@ -18,11 +18,10 @@ class SelectMuscleGroupActivity : ComponentActivity() {
 
         var buttonMenu = findViewById(R.id.main_button) as ImageButton
         var buttonCalories = findViewById(R.id.calories_button) as ImageButton
-        var buttonWorkouts = findViewById(R.id.workouts_button) as ImageButton
         var buttonTracking = findViewById(R.id.tracking_button) as ImageButton
         var buttonMap = findViewById(R.id.map_button) as ImageButton
 
-        var chestButton = findViewById(R.id.height) as Button
+        var chestButton = findViewById(R.id.chest_button) as Button
         var backMuscleButton = findViewById(R.id.back_button) as Button
         var shouldersButton = findViewById(R.id.shoulders_button) as Button
         var armsButton = findViewById(R.id.arms_button) as Button
@@ -36,10 +35,6 @@ class SelectMuscleGroupActivity : ComponentActivity() {
         }
         buttonCalories.setOnClickListener {
             val intent = Intent(this, CaloriesActivity::class.java)
-            startActivity(intent)
-        }
-        buttonWorkouts.setOnClickListener {
-            val intent = Intent(this, SelectMuscleGroupActivity::class.java)
             startActivity(intent)
         }
         buttonTracking.setOnClickListener {

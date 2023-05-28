@@ -16,7 +16,7 @@ class SelectBodyPartActivity : ComponentActivity() {
 
         val listView = findViewById<ListView>(R.id.list_view)
         val backButton = findViewById<Button>(R.id.go_back_button)
-        val heightButton = findViewById<Button>(R.id.height)
+        val heightButton = findViewById<Button>(R.id.chest_button)
         val weightButton = findViewById<Button>(R.id.weight)
 
         val bodyParts = listOf(
