@@ -19,86 +19,54 @@ import java.security.MessageDigest
 
 class RegisterActivity : ComponentActivity() {
     private lateinit var database: DatabaseReference
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register_activity)
-
         database = Firebase.database.reference
-
         var userName = findViewById(R.id.et_user_name) as EditText
         var userEmail = findViewById(R.id.et_user_email) as EditText
         var userPassword = findViewById(R.id.et_password) as EditText
         var userConfirmPassword = findViewById(R.id.et_confirm_password) as EditText
         var buttonRegister = findViewById(R.id.btn_register) as Button
         var buttonBack = findViewById(R.id.btn_back) as Button
-
         var toast: Toast =
             Toast.makeText(applicationContext, "User already exist", Toast.LENGTH_SHORT)
         var count: Int? = 0
-
         buttonRegister.setOnClickListener {
-
             val email = userEmail.text.toString()
             val user_name = userName.text.toString()
             val password = userPassword.text.toString()
             val confirmpassword = userConfirmPassword.text.toString()
-
-            if (email.isEmpty()) {
-                userEmail.error = "Please enter a valid email"
-            }
-
-            if (user_name.isEmpty()) {
-                userName.error = "Please enter user name"
-            }
-
-            if (password.isEmpty()) {
-                userPassword.error = "Please enter a valid password"
-            }
-
-            if (confirmpassword.isEmpty()) {
-                userConfirmPassword.error = "Please enter a matching password"
-            }
+            if (email.isEmpty()) { userEmail.error = "Please enter a valid email" }
+            if (user_name.isEmpty()) { userName.error = "Please enter user name"  }
+            if (password.isEmpty()) {  userPassword.error = "Please enter a valid password" }
+            if (confirmpassword.isEmpty()) {  userConfirmPassword.error = "Please enter a matching password"  }
 
             fun encryptPassword(password: String): String {
                 val digest = MessageDigest.getInstance("SHA-256")
                 val bytes = digest.digest(password.toByteArray())
                 return bytes.joinToString("") { "%02x".format(it) }
             }
-
-
 //            Password can contain digits [0-9].
 //            Password can contain lowercase Latin characters [a-z].
 //            Password can contain uppercase Latin characters [A-Z].
 //            Password can contain special characters like ! @ # & ( ).
 //            Password must contain a length of at least 6 characters and a maximum of 20 characters.
-
             if (!password.matches("^(?=.*[A-Z,a-z,\\d,!@#&()–[{}]:;',.?/*~\$^+=<>]).{6,20}\$".toRegex())) Toast.makeText(
-                this,
-                "Invalid password",
-                Toast.LENGTH_LONG
-            ).show()
+                this, "Invalid password", Toast.LENGTH_LONG ).show()
             else if (password != confirmpassword && password.isNotEmpty()) Toast.makeText(
-                this,
-                "Passwords do not match",
-                Toast.LENGTH_LONG
-            ).show()
+                this, "Passwords do not match", Toast.LENGTH_LONG ).show()
             else if (user_name.isNotEmpty() && password.isNotEmpty() && email.isNotEmpty()) {
-
-
                 database.child("users").addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (ds in snapshot.children) {
-
                             val firebaseUserName = ds.child("userName").value.toString()
                             val firebaseUserEmail = ds.child("userEmail").value.toString()
-
                             if (user_name == firebaseUserName || email == firebaseUserEmail) {
                                 count = 1
                             }
                         }
                     }
-
                     override fun onCancelled(error: DatabaseError) {
                         Log.e("ooooo", "onCancelled: ${error.toException()}")
                     }
@@ -109,28 +77,22 @@ class RegisterActivity : ComponentActivity() {
                             Toast.makeText(
                                 this, "Data inserted successfully", Toast.LENGTH_LONG
                             ).show()
-
                             userName.text.clear()
                             userEmail.text.clear()
                             userPassword.text.clear()
                             userConfirmPassword.text.clear()
-
                             val intent = Intent(this, LoginActivity::class.java)
                             startActivity(intent)
-
                         }.addOnFailureListener { err ->
-                            Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
-                        }
+                            Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show() }
                 } else {
                     toast.show()
                 }
             } else Toast.makeText(this, "Please enter all fields", Toast.LENGTH_LONG).show()
         }
-
         buttonBack.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-
     }
 }
