@@ -24,44 +24,35 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 class MeasurementActivity : ComponentActivity() {
-
     private lateinit var database: DatabaseReference
     private lateinit var measurementRecyclerView: RecyclerView
     private lateinit var measurementArrayList: ArrayList<Measurement>
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.measurement_activity)
-
         val backButton = findViewById<Button>(R.id.back_button)
         val addMeasurementButton = findViewById<Button>(R.id.add_measurement)
         val measurementInputEditText = findViewById<EditText>(R.id.edit_measurement)
         val bodyPart = findViewById<TextView>(R.id.body_part)
         val emptyListMessage = findViewById(R.id.tv_empty_list) as TextView
         var bodyPartName: String = "nothing"
-
         val bundle = intent.extras
         if (bundle != null) {
             bodyPartName = bundle.getString("body_part").toString()
-
             bodyPart.text = bodyPartName
             database = FirebaseDatabase.getInstance().getReference("users")
                 .child(UserCharacteristics.getUsername().toString()).child("measurement")
                 .child(bodyPartName)
         }
-
         measurementRecyclerView = findViewById(R.id.measurement_list)
         measurementRecyclerView.layoutManager = LinearLayoutManager(this)
         measurementRecyclerView.setHasFixedSize(true)
-
         measurementArrayList = ArrayList<Measurement>()
-
         backButton.setOnClickListener {
             val intent = Intent(this, SelectBodyPartActivity::class.java)
             startActivity(intent)
         }
-
         addMeasurementButton.setOnClickListener {
             val measurementValue = measurementInputEditText.text.toString().trim()
             if (measurementValue.isNotEmpty()) {
@@ -93,7 +84,6 @@ class MeasurementActivity : ComponentActivity() {
                 Toast.makeText(this, "Please enter a measurement value", Toast.LENGTH_SHORT).show()
             }
         }
-
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 measurementArrayList.clear()
@@ -101,7 +91,6 @@ class MeasurementActivity : ComponentActivity() {
                     for (measurementSnapshot in snapshot.children) {
                         val measurement = measurementSnapshot.getValue(Measurement::class.java)
                         measurementArrayList.add(measurement!!)
-
                     }
                     measurementRecyclerView.adapter = MeasurementListAdapter(measurementArrayList)
                     emptyListMessage.visibility = View.INVISIBLE
@@ -109,21 +98,16 @@ class MeasurementActivity : ComponentActivity() {
                     emptyListMessage.visibility = View.VISIBLE
                 }
             }
-
-
             override fun onCancelled(error: DatabaseError) {
                 Log.e("MeasurementActivity", "Failed to read value.", error.toException())
             }
         })
     }
-
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getCurrentDate(): String {
-
         val romaniaTimeZone: ZoneId = ZoneId.of("Europe/Bucharest")
         val today: LocalDate = LocalDate.now(romaniaTimeZone)
         val todayDate: String = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-
         return todayDate
     }
 }
