@@ -17,18 +17,15 @@ class FoodListAdapter(
     private var foodList: ArrayList<Food>, var context: Context
 ) :
     RecyclerView.Adapter<FoodListAdapter.MyViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.food_design, parent, false)
         return MyViewHolder(itemView)
-
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentFood = foodList[position]
-
         holder.name.text = currentFood.name
         holder.calories.text = currentFood.calories.toString() + "cal"
         holder.protein.text = "Protein: " + String.format("%.1f", currentFood.protein) + "g"
@@ -44,16 +41,12 @@ class FoodListAdapter(
             val intent = Intent(context, AddFoodActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
-
         }
     }
-
     override fun getItemCount(): Int {
         return foodList.size
     }
-
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         val name: TextView = itemView.findViewById(R.id.firebase_food_name)
         val calories: TextView = itemView.findViewById(R.id.firebase_food_calories)
         val protein: TextView = itemView.findViewById(R.id.firebase_food_protein)
@@ -61,6 +54,4 @@ class FoodListAdapter(
         val fats: TextView = itemView.findViewById(R.id.firebase_food_fats)
         val grams: TextView = itemView.findViewById(R.id.firebase_food_grams)
     }
-
-
 }
