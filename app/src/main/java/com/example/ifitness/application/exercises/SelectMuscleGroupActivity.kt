@@ -83,7 +83,7 @@ class SelectMuscleGroupActivity : ComponentActivity() {
 
         }
         absButton.setOnClickListener {
-            bundle.putString("muscleGroup", "abs")
+            bundle.putString("muscleGroup", "abdomen")
 
             val intent = Intent(this, WorkoutActivity::class.java)
             intent.putExtras(bundle)

@@ -55,6 +55,7 @@ class LoginActivity : ComponentActivity() {
             val intent = Intent(this, MainActivity::class.java)
             databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    count = 0
                     for (ds in snapshot.children) {
 
                         val userName = ds.child("userName").value.toString()
@@ -68,9 +69,10 @@ class LoginActivity : ComponentActivity() {
                             startActivity(intent)
                             toast.cancel()
                             count = 1
-                        } else {
-                            count = 0
                         }
+                    }
+                    if(count==0){
+                        toast.show()
                     }
                 }
 
@@ -78,12 +80,6 @@ class LoginActivity : ComponentActivity() {
                     Log.e("ooooo", "onCancelled: ${error.toException()}")
                 }
             })
-
-            Handler().postDelayed({
-                if (count == 0) {
-                    toast.show()
-                }
-            }, 150)
 
         }
 

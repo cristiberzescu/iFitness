@@ -129,7 +129,7 @@
         android:layout_height="wrap_content"
         android:hint="Grams"
         android:textSize="30dp"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
